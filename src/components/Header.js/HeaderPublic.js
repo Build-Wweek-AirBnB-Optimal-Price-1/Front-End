@@ -18,10 +18,10 @@ const Navigation = styled.nav`
 `;
 
 const LinkContainer = styled.div`
-    margin: 0 20px;
     border-radius: 10px;
     background-color: #FF5A5F;
-    padding: 10px;
+    padding: 10px 15px;
+    color: white;
     &:hover{
         cursor: pointer;
     }
@@ -37,7 +37,7 @@ function HeaderPublic(){
                 <a>About</a>
                 
                 <Link to='/login'>Login</Link>
-                <LinkContainer><Link to='signup' className='sign-up'>Sign Up</Link></LinkContainer>
+                <Link to='signup'><LinkContainer>Sign Up</LinkContainer></Link>
             </Navigation>
         </Header>        
     );
