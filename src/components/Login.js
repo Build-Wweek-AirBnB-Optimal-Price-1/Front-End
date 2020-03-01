@@ -1,6 +1,7 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
+import { loginAction } from '../actions/authActions';
 
 const Form = styled.form`
     width: 60%;
@@ -32,29 +33,39 @@ const Label = styled.label`
     font-family: 'Raleway';
 `;
 
+const Error = styled.p`
+    font-size: 1.5rem;
+    text-align: center;
+    font-family: 'Raleway';
+    color: red;
+    margin-bottom: ${props => props.margin ? '20px' : '0'};
+`;
+
 function Login(){
     const { register, handleSubmit, errors } = useForm();
 
     const onSubmit = (data) => {
         console.log(data);
+        loginAction(data);
     }
 
     return(
         <Form onSubmit={handleSubmit(onSubmit)}>
-            <Label>Email</Label>
+            <Label>Username</Label>
             <Input
-                name='email'
+                name='username'
                 ref={register({ required: true })}
-                placeholder='email'
+                placeholder='username'
             />
-            {errors.email && <p>Email Required</p>}
+            {errors.username && <Error margin>Username Required</Error>}
             <Label>Password</Label>
             <Input
                 name='password'
+                type='password'
                 ref={register({ required: true })}
                 placeholder='password'
             />
-            {errors.password && <p>Password Required</p>}
+            {errors.password && <Error>Password Required</Error>}
             <Input type='submit' className='submit-button'/>
         </Form>
     );
