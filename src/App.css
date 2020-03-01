@@ -1,8 +1,10 @@
+/* Styles for header*/
 header nav a{
     font-family: 'Raleway';
     text-decoration: none;
     color: #484848;
     margin: 0 20px;
+    font-size: 1.3rem;
 }
 
 header nav a:hover{
@@ -11,4 +13,14 @@ header nav a:hover{
 
 .sign-up{
     color: white;
+}
+
+/* Styles for submit button */
+.submit-button{
+    background-color: #FC642D;
+    color: white;
+}
+
+.submit-button:hover{
+    cursor: pointer;
 }

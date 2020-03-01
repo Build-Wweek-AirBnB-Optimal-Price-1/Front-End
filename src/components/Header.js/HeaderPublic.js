@@ -7,6 +7,9 @@ const Header = styled.header`
     align-items: center;
     justify-content: space-between;
     height: 80px;
+    -webkit-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.75);
 `;
 
 const Navigation = styled.nav`
@@ -24,12 +27,15 @@ const LinkContainer = styled.div`
     }
 `;
 
+// Displays public header to un-registered/un-authenticated users
 function HeaderPublic(){
     return(
         <Header>
             <h1>Logo Here</h1>
             <Navigation>
+                {/* Link to marketing about page */}
                 <a>About</a>
+                
                 <Link to='/login'>Login</Link>
                 <LinkContainer><Link to='signup' className='sign-up'>Sign Up</Link></LinkContainer>
             </Navigation>
