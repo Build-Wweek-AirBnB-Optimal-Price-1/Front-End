@@ -1,4 +1,10 @@
 import React from 'react';
+
+import { createStore, applyMiddleware } from "redux";
+import {listingReducer} from "./reducers/listingReducer";
+import { Provider } from "react-redux";
+import thunk from "redux-thunk";
+
 import Header from './components/Header';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
@@ -15,8 +21,12 @@ const Title = styled.h1`
   margin: 80px 0;
 `;
 
+const store = createStore(listingReducer, applyMiddleware(thunk));
+
+
 function App() {
   return (
+    <Provider store={store}>
     <div className="App">
       {/* Default Route? */}
       <Header/>
@@ -32,6 +42,7 @@ function App() {
         <ListingPage/>
       </Route>
     </div>
+    </Provider>
   );
 }
 
