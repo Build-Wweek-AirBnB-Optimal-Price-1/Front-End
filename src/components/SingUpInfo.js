@@ -4,7 +4,9 @@ import styled from 'styled-components';
 const Requirements = styled.div`
     margin-top: 80px;
     margin: 80px auto;
-    width: 300px;
+    width: 50%;
+    max-width: 300px;
+    min-width: 260px;
     display: flex;
     justify-content: center;
     flex-direction: column;

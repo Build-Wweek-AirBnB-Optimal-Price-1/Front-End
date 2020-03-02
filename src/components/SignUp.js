@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
 import { registerAction } from '../actions/authActions';
@@ -15,7 +15,7 @@ const Form = styled.form`
 const Input = styled.input`
     width: 50%;
     max-width: 400px;
-    min-width: 300px;
+    min-width: 280px;
     height: 40px;
     border: none;
     outline: none;
@@ -23,6 +23,7 @@ const Input = styled.input`
     -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
     box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+    -webkit-appearance: none;
     margin: 20px auto;
     padding: 0 10px;
     font-size: 1.2rem;
@@ -45,12 +46,16 @@ const Error = styled.p`
 
 function SignUp(){
     const { register, handleSubmit, errors, watch } = useForm();
+    const [ error, setError ] = useState('');
 
     // Submit data to back-end and reset form
     const onSubmit = (data, e) => {
-        console.log('submitting');
+        data = {
+            username: data[0],
+            password: data[1]
+        };
         e.target.reset();
-        registerAction(data);
+        registerAction(data, setError);
     }
 
     // Watch first password input field to match with second password input field
