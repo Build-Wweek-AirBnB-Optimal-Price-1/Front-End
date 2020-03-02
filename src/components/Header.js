@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import Logo from '../assets/logo.png';
 
 const HeaderStruct = styled.header`
     display: flex;
@@ -44,7 +45,7 @@ function Header(){
     }else{
         return(
             <HeaderStruct>
-                <h1>Logo Here</h1>
+                <img src={Logo} alt='Optimal BNB'></img>
                 <Navigation>
                     {/* Link to marketing about page */}
                     <a>About</a>

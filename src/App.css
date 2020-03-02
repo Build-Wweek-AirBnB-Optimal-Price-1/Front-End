@@ -11,6 +11,11 @@ a:hover{
     cursor: pointer;
 }
 
+header img{
+    width: 200px;
+    margin-left: 20px;
+}
+
 /* Styles for submit button */
 .submit-button{
     background-color: #FC642D;
