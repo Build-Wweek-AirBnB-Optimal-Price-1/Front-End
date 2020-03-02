@@ -14,7 +14,7 @@ const Form = styled.form`
 const Input = styled.input`
     width: 50%;
     max-width: 400px;
-    min-width: 300px;
+    min-width: 280px;
     height: 40px;
     border: none;
     outline: none;
