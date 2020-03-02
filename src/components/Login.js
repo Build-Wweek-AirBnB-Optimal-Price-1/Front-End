@@ -9,11 +9,12 @@ const Form = styled.form`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin-top: 15%;
 `;
 
 const Input = styled.input`
     width: 50%;
+    max-width: 400px;
+    min-width: 300px;
     height: 40px;
     border: none;
     outline: none;
@@ -44,8 +45,9 @@ const Error = styled.p`
 function Login(){
     const { register, handleSubmit, errors } = useForm();
 
-    const onSubmit = (data) => {
-        console.log(data);
+    // Submit data to back-end and reset form
+    const onSubmit = (data, e) => {
+        e.target.reset();
         loginAction(data);
     }
 
@@ -66,7 +68,7 @@ function Login(){
                 placeholder='password'
             />
             {errors.password && <Error>Password Required</Error>}
-            <Input type='submit' className='submit-button'/>
+            <Input type='submit' className='submit-button' value='Login'/>
         </Form>
     );
 }
