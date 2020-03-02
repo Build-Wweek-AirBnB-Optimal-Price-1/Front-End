@@ -16,6 +16,25 @@ header img{
     margin-left: 20px;
 }
 
+@media (max-width: 480px){
+    header img{
+        width: 130px;
+        margin-left: 10px;
+    }
+    header nav a{
+        margin: 0 10px;
+    }
+}
+
+@media (max-width: 350px){
+    header img{
+        width: 110px;
+    }
+    header nav a{
+        margin: 0 7px;
+    }
+}
+
 /* Styles for submit button */
 .submit-button{
     background-color: #FC642D;
