@@ -83,7 +83,7 @@ export const editListing = (editedListing) => dispatch => {
                     dispatch({ type: EDIT_LISTING_SUCCESS, payload: backendRes.data })
                 })
                 .catch(err => {
-                    dispatch({ type: EDIT_LISTING_ERROR, payload: res.data.message })
+                    dispatch({ type: EDIT_LISTING_ERROR, payload: err.data.message })
                 })
         // })
         // .catch(err => {
@@ -101,6 +101,6 @@ export const deleteListing = (id) => dispatch => {
             dispatch({ type: DELETE_LISTING_SUCCESS, payload: id })
         })
         .catch(err => {
-            dispatch({ type: DELETE_LISTING_ERROR, payload: res.data.message })
+            dispatch({ type: DELETE_LISTING_ERROR, payload: err.data.message })
         })
 }
