@@ -2,7 +2,12 @@
 
 import {axiosWithAuth} from '../utils/axiosWithAuth'
 
+
+export const FETCH_PRICE = "FETCH_PRICE";
+export const UPDATE_PRICE = "UPDATE_PRICE";
+
 export const FETCH_LISTINGS = "FETCH_LISTINGS";
+
 export const ADD_LISTING = "ADD_LISTING";
 export const EDIT_LISTING = "EDIT_LISTING";
 export const DELETE_LISTING = "DELETE_LISTING";
@@ -28,7 +33,8 @@ export const getListings = () => dispatch => {
 }
 
 export const addListing = (newListing) => dispatch => {
-    dispatch({type: ADD_LISTING})
+    dispatch({type: FETCH_PRICE})
+    dispatch({type: UPDATE_PRICE})
     axiosWithAuth()
         //Write in correct endpoint here
         .get('/listings/add')
@@ -43,6 +49,8 @@ export const addListing = (newListing) => dispatch => {
 }
 
 export const editListing = (editedListing, id) => dispatch => {
+    dispatch({type: FETCH_PRICE})
+    dispatch({type: UPDATE_PRICE})
     dispatch({type: EDIT_LISTING})
     axiosWithAuth()
         //Write in correct endpoint here
