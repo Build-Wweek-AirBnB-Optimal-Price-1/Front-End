@@ -1,13 +1,9 @@
 import axios from 'axios';
 
 
+//Still waiting on data science api
 export const axiosData = () => {
-
-    return axios.create({
-        headers: {
-            authorization: ''
-        },
-        //This base url will change to our backend api
-        baseURL: 'http://localhost:5000'
-    })
+   return axios.create({
+       baseURL: ''
+   })
 }

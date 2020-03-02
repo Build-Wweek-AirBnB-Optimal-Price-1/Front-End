@@ -43,16 +43,14 @@ export const getListings = () => dispatch => {
 
 export const addListing = (newListing) => dispatch => {
     dispatch({ type: ADD_LISTING })
-    axiosData()
-        //Write in correct endpoint here
-        .post('', newListing)
-        .then((dataRes) => {
+    //Uncomment data science call and fix axiosData.js once DS endpoint is done
+    // axiosData()
+        // .post('', newListing)
+        // .then((dataRes) => {
             axiosWithAuth()
-                //Write in correct endpoint here
                 .post('/listings', {
                     ...newListing,
-                    //Make sure property is named correctly once DS docs are out
-                    price: dataRes
+                    // price: dataRes
                 })
                 .then(backendRes => {
                     dispatch({ type: ADD_LISTING_SUCCESS, payload: backendRes.data })
@@ -60,10 +58,10 @@ export const addListing = (newListing) => dispatch => {
                 .catch(err => {
                     dispatch({ type: ADD_LISTING_ERROR, payload: err.data.message })
                 })
-        })
-        .catch(err => {
-            dispatch({ type: SET_ERROR, payload: err.data.message })
-        });
+        // })
+        // .catch(err => {
+            // dispatch({ type: SET_ERROR, payload: err.data.message })
+        // });
 
 
 }
@@ -72,23 +70,25 @@ export const editListing = (editedListing) => dispatch => {
 
     dispatch({ type: EDIT_LISTING })
 
-    axiosData()
-        //Write in correct endpoint here
-        .post('', editedListing.price)
-        .then((dataRes) => {
+    //Uncomment data science call and fix axiosData.js once DS endpoint is done
+    // axiosData()
+        // .post('', editedListing)
+        // .then((dataRes) => {
              axiosWithAuth()
-                .put(`/listings/${editedListing.id}`)
+                .put(`/listings/${editedListing.id}`, {
+                    ...editedListing,
+                    // price: dataRes
+                })
                 .then(backendRes => {
                     dispatch({ type: EDIT_LISTING_SUCCESS, payload: backendRes.data })
                 })
                 .catch(err => {
                     dispatch({ type: EDIT_LISTING_ERROR, payload: res.data.message })
                 })
-        })
-        .catch(err => {
-            //Make sure this is right according to DS docs
-            dispatch({ type: EDIT_LISTING_ERROR, payload: err.data.message })
-        });
+        // })
+        // .catch(err => {
+            // dispatch({ type: EDIT_LISTING_ERROR, payload: err.data.message })
+        // });
 
 
 }
