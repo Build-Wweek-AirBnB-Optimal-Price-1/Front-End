@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { logoutAction } from '../actions/authActions';
 import Logo from '../assets/logo.png';
 
 const HeaderStruct = styled.header`
@@ -35,11 +36,10 @@ function Header(){
     if(token){
         return(
             <HeaderStruct>
-                <h1>Logo Here</h1>
+                <img src={Logo} alt='Optimal BNB'></img>
                 <Navigation>
-                    {/* Link to marketing about page */}
                     <Link to='/listings'>Listings</Link>
-                    <Link to='/login'><LinkContainer>Log Out</LinkContainer></Link>
+                    <Link onClick={logoutAction}><LinkContainer>Log Out</LinkContainer></Link>
                 </Navigation>
             </HeaderStruct>  
         );
@@ -48,8 +48,12 @@ function Header(){
             <HeaderStruct>
                 <img src={Logo} alt='Optimal BNB'></img>
                 <Navigation>
+                    {/* Temporary link for development */}
+                    <Link to='/listings'>Listings</Link>
+
                     {/* Link to marketing about page */}
                     <a>About</a>
+
                     <Link to='/login'>Login</Link>
                     <Link to='/signup'><LinkContainer>Sign Up</LinkContainer></Link>
                 </Navigation>
