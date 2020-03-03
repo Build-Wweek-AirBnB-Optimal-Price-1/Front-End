@@ -49,8 +49,8 @@ function Login(){
 
     // Submit data to back-end and reset form
     const onSubmit = (data, e) => {
-        e.target.reset();
         loginAction(data, setError);
+        e.target.reset();
     }
 
     return(

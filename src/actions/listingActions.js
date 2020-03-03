@@ -57,6 +57,7 @@ export const addListing = (newListing) => dispatch => {
                 })
                 .catch(err => {
                     dispatch({ type: ADD_LISTING_ERROR, payload: err.data.message })
+                    console.log('here');
                 })
         // })
         // .catch(err => {

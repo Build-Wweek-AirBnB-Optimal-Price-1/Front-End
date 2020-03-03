@@ -54,8 +54,8 @@ function SignUp(){
             username: data[0],
             password: data[1]
         };
-        e.target.reset();
         registerAction(data, setError);
+        e.target.reset();
     }
 
     // Watch first password input field to match with second password input field
