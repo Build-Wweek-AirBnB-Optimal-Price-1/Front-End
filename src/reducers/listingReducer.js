@@ -19,7 +19,14 @@ const initialState = {
         type: 'room',
         nights: '3',
         location: 'downtown'
-    }],
+    },
+    {
+        id: 2,
+        type: 'apartment',
+        nights: '5',
+        location: 'city'
+    }
+    ],
     isFetching: false,
     isAdding: false,
     isEditing: false,
