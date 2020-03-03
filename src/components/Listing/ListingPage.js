@@ -8,6 +8,11 @@ import theme from '../../theme';
 import {ResponsiveContainer, Title, CardContainer} from '../PresentationalComponents';
 import ListingCard from './ListingCard';
 
+
+const ListingPageContainer = styled.div`
+    margin-top: 60px;
+`
+
 const ControlBar = styled.div`
     display: flex;
     justify-content: space-between;
@@ -76,7 +81,8 @@ function ListingPage(props){
         );
     }else{
         return (
-            <div>
+
+                <ListingPageContainer>
                 <ResponsiveContainer>
                 <Title>My Listings</Title>
                 <ControlBar>
@@ -94,7 +100,8 @@ function ListingPage(props){
                     })}
                     </CardContainer>
                 </ResponsiveContainer>
-            </div>
+                </ListingPageContainer>
+
         );
     }
 }
