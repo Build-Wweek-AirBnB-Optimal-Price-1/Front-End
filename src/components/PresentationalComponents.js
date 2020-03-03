@@ -7,8 +7,10 @@ import styled from 'styled-components'
 //Responsive main container for consistent margins
 export const ResponsiveContainer = styled.main`
     margin: 0 15px;
+    margin-top: 60px;
     ${theme.breakpoints.tablet} {
         margin: 0 30px
+        margin-top: 60px;
     }
 `
 //Title component
@@ -30,6 +32,9 @@ export const CardContainer = styled.div`
     ${theme.breakpoints.tablet} {
         flex-direction: row;
         flex-wrap: wrap;
+        max-width: 900px;
+        margin: 0 auto;
+
     }
 `
 
