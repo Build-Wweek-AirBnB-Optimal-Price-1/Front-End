@@ -15,7 +15,7 @@ import {
 
 const initialState = {
     listings: [{
-        id: 1,
+        id: '1',
         type: 'room',
         nights: '3',
         location: 'downtown'

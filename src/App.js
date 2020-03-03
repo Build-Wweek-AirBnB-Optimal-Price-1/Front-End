@@ -11,11 +11,12 @@ import Login from './components/Login';
 import SignUp from './components/SignUp';
 import SignUpInfo from './components/SingUpInfo';
 import ListingPage from './components/Listing/ListingPage';
-import AddListing from './components/Listing/AddListing';
+
 import ListingDetail from './components/Listing/ListingDetails';
 
 import styled from 'styled-components';
 import './App.css';
+import ListingForm from './components/Listing/ListingForm';
 
 const Title = styled.h1`
   font-size: 2rem;
@@ -44,9 +45,12 @@ function App() {
         <ListingPage/>
       </Route>
       <Route path='/listings/add'>
-        <AddListing/>
+        <ListingForm edit={false} />
       </Route>
-      <Route path='/details/:id'>
+      <Route path='/listings/edit/:id'>
+        <ListingForm edit={true} />
+      </Route>
+      <Route path='/listings/details/:id'>
         <ListingDetail/>
       </Route>
     </div>

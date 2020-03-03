@@ -55,7 +55,7 @@ function ListingCard(props){
                 {props.preview && <span>Details</span>}
 
                 {/* Temporary hardcoded id value -> change to listing id */}
-                {props.preview === false && <span onClick={() => {history.push(`details/${props.listing.id}`)}} to={`/details/1}`}>Details</span>}
+                {props.preview === false && <span onClick={() => {history.push(`/listings/details/${props.listing.id}`)}} >Details</span>}
             </CardDetails>
         </Card>
     );
