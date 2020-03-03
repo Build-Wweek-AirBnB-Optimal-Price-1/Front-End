@@ -12,7 +12,8 @@ function PreviewListing(){
     return(
         <div className='preview-container'>
             <h1>Preview</h1>
-            <ListingCard preview={true}/>
+            {/* Pass in listing changes to listing prop */}
+            <ListingCard preview={true} listing={{}}/>
         </div>
     );
 }

@@ -8,8 +8,6 @@ import theme from '../../theme';
 import {ResponsiveContainer, Title, CardContainer} from '../PresentationalComponents';
 import ListingCard from './ListingCard';
 
-
-
 const ControlBar = styled.div`
     display: flex;
     justify-content: space-between;
