@@ -1,23 +1,50 @@
 import React from 'react';
 import styled from 'styled-components';
+import theme from '../theme';
 import { Link } from 'react-router-dom';
 import { logoutAction } from '../actions/authActions';
 import Logo from '../assets/logo.png';
 
+
+
+
 const HeaderStruct = styled.header`
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    height: 80px;
+   
     width: 100%;
     -webkit-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.75);
     box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.75);
+
+    ${theme.breakpoints.tablet} {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        height: 80px;
+    }
+
+
 `;
+
+const HeaderLogo = styled.img`
+ position: relative;
+ left: -4px;
+ margin: 15px 0;
+${theme.breakpoints.tablet} {
+    position: static;
+    margin-left: 20px;
+}
+`
 
 const Navigation = styled.nav`
     display: flex;
     align-items: center;
+    margin-bottom: 10px;
+    ${theme.breakpoints.tablet} {
+        margin-bottom: 0px;
+    }
 `;
 
 const LinkContainer = styled.div`
@@ -36,7 +63,7 @@ function Header(){
     if(token){
         return(
             <HeaderStruct>
-                <img src={Logo} alt='Optimal BNB'></img>
+                <HeaderLogo src={Logo} alt='Optimal BNB' />
                 <Navigation>
                     <Link to='/listings'>Listings</Link>
                     <Link onClick={logoutAction}><LinkContainer>Log Out</LinkContainer></Link>
@@ -46,7 +73,7 @@ function Header(){
     }else{
         return(
             <HeaderStruct>
-                <img src={Logo} alt='Optimal BNB'></img>
+                <HeaderLogo src={Logo} alt='Optimal BNB' />
                 <Navigation>
                     {/* Temporary link for development */}
                     <Link to='/listings'>Listings</Link>

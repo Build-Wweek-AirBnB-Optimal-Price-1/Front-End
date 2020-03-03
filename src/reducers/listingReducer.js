@@ -14,7 +14,12 @@ import {
 } from "../actions/listingActions";
 
 const initialState = {
-    listings: [],
+    listings: [{
+        id: 1,
+        type: 'room',
+        nights: '3',
+        location: 'downtown'
+    }],
     isFetching: false,
     isAdding: false,
     isEditing: false,
