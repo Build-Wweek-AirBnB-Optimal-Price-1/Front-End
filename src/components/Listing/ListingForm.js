@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
 
 const Form = styled.form`
-    width: 100%;
+    width: 50%;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -35,6 +35,13 @@ const Label = styled.label`
     font-family: 'Raleway';
 `;
 
+/*
+    Listing Form
+    @props: A {add} boolean value to represent if the form is adding or editing a listing
+            - If add is true, on submit, the form will add a new listing
+            - If ass is false, on submit, the form will edit a current listing
+    @return: Returns a form that accepts input for adding or editing a listing
+*/
 function ListingForm(){
     const { register, handleSubmit, errors } = useForm();
 

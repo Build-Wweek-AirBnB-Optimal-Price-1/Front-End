@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import ListingCard from './ListingCard';
 import { Link } from 'react-router-dom';
 import {connect} from 'react-redux';
@@ -50,27 +50,49 @@ const SubTitle = styled.h6`
     margin-left: ${props => props.margin ? '10px' : '0'};
 `;
 
+/*
+    ListingPage
+    @props: All listing objects stored in redux
+            Various methods -> Refer to reducers/listingReducer.js -> initialState
+    @return: A page that displays all listings and has an option to add a new listing or
+                search for a current listing
+*/
 function ListingPage(props){
+    const [fetching, setFetching] = useState(true);
+    
+    /*
+        Renders when component mounts
+        Re-renders whenever there is a change to isFetching from props
+    */
+    useEffect(() => {
+        setFetching(props.isFetching);
+    }, [props.isFetching])
 
-    return (
-        <div>
-            <Title>My Listings</Title>
-            <SubNav>
-                <NewListing>
-                    <Link to='/listings/add'><Button>+</Button></Link>
-                    <SubTitle margin>Add New Listing</SubTitle>
-                </NewListing>
-                <div className='search'>
-                    <SubTitle>Search</SubTitle>
+    if(fetching){
+        return(
+            <p>Grabbing Data</p>
+        );
+    }else{
+        return (
+            <div>
+                <Title>My Listings</Title>
+                <SubNav>
+                    <NewListing>
+                        <Link to='/listings/add'><Button>+</Button></Link>
+                        <SubTitle margin>Add New Listing</SubTitle>
+                    </NewListing>
+                    <div className='search'>
+                        <SubTitle>Search</SubTitle>
+                    </div>
+                </SubNav>
+                <div className='listings-container'>
+                    {props.listings.map((listing, index) => {
+                        return <ListingCard listing={listing} key={index}/>
+                    })}
                 </div>
-            </SubNav>
-            <div className='listings-container'>
-                {props.listings.map((listing, index) => {
-                    return <ListingCard listing={listing} key={index}/>
-                })}
             </div>
-        </div>
-    );
+        );
+    }
 }
 
 const mapStateToProps = (state) => {
