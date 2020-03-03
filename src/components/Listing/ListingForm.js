@@ -37,17 +37,19 @@ const Label = styled.label`
 
 /*
     Listing Form
-    @props: A {add} boolean value to represent if the form is adding or editing a listing
-            - If add is true, on submit, the form will add a new listing
-            - If ass is false, on submit, the form will edit a current listing
+    @props: A listing action that
+            - if addListing is passed through, the listing will be added to listings state
+            - if editListings is passed through, the listing will update the same listing in state
     @return: Returns a form that accepts input for adding or editing a listing
 */
-function ListingForm(){
-    const { register, handleSubmit, errors } = useForm();
+function ListingForm(props){
+    const { register, handleSubmit } = useForm();
 
     const onSubmit = (data, e) => {
-        e.target.reset();
+        console.log(data);
         // Add listing to state/overwrite current listing in state
+        props.listingAction(data);
+        e.target.reset();
     }
 
     return(
@@ -75,7 +77,7 @@ function ListingForm(){
                     required: true,
                 })}
             />
-            <Input type='submit' className='submit-button'/>
+            <Input type='submit' className='submit-button' value='Add Listing'/>
         </Form>
     )
 }

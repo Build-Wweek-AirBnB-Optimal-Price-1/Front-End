@@ -57,18 +57,12 @@ const SubTitle = styled.h6`
     @return: A page that displays all listings and has an option to add a new listing or
                 search for a current listing
 */
-function ListingPage(props){
-    const [fetching, setFetching] = useState(true);
-    
+function ListingPage(props){    
     /*
         Renders when component mounts
         Re-renders whenever there is a change to isFetching from props
     */
-    useEffect(() => {
-        setFetching(props.isFetching);
-    }, [props.isFetching])
-
-    if(fetching){
+    if(props.isFetching){
         return(
             <p>Grabbing Data</p>
         );
@@ -102,4 +96,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, {addListing})(ListingPage);
+export default connect(mapStateToProps)(ListingPage);
