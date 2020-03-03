@@ -18,7 +18,11 @@ const initialState = {
         id: '1',
         type: 'room',
         nights: '3',
-        location: 'downtown'
+        location: 'downtown',
+        features: [
+            'Tv',
+            'Nice View'
+        ]
     },
     {
         id: 2,

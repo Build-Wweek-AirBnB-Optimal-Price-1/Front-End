@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
-import { Title, CardTitle, CardText } from '../PresentationalComponents';
+import { Title, CardTitle, CardText, ResponsiveContainer } from '../PresentationalComponents';
 import { deleteListing } from '../../actions/listingActions';
 import theme from '../../theme';
 import styled from 'styled-components';
@@ -96,6 +96,7 @@ function ListingDetails(){
 
     return(
         <div>
+            <ResponsiveContainer>
             <Title>Listing Details</Title>
             <DetailsContainer>
                 <CardTitle>Location: <span>Location Here</span></CardTitle>
@@ -112,6 +113,7 @@ function ListingDetails(){
                     <ConfirmButton onClick={handleCancel}>Cancel</ConfirmButton>
                 </ConfirmDelete>}
             </DetailsContainer>
+            </ResponsiveContainer>
         </div>
     );
 }

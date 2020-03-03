@@ -1,8 +1,14 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { useForm } from 'react-hook-form';
 import {useParams} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {addListing, editListing} from '../../actions/listingActions';
+
+// Material UI Imports
+import Chip from '@material-ui/core/Chip';
+import Autocomplete from '@material-ui/lab/Autocomplete';
+import { makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
 
 import ListingCard from './ListingCard';
 
@@ -50,22 +56,36 @@ const Label = styled.label`
             - if editListings is passed through, the listing will update the same listing in state
     @return: Returns a form that accepts input for adding or editing a listing
 */
+
+const useStyles = makeStyles(theme => ({
+    root: {
+      width: '300px',
+      minWidth: '300px',
+      boxShadow: '0px 0px 5px 0px rgba(0,0,0,0.75)',
+      border: 'none',
+      borderRadius: '10px',
+      '& > * + *': {
+        marginTop: theme.spacing(3),
+      },
+    },
+  }));
+
 function ListingForm(props){
+    const classes = useStyles();
+
     const {id} = useParams();
+    const [ autoComplete, setAutoComplete] = useState(props.listings.find((listing) => listing.id === id).features);
 
     const { register, handleSubmit, watch } = useForm({defaultValues: {
         ...props.listings.find((listing) => listing.id === id)
     }});
 
     const onSubmit = (data, e) => {
-        console.log(data);
-        // Add listing to state/overwrite current listing in state
-        props.edit ? props.editListing(data) : props.addListing(data)
+        const listing = {...data, features: [...autoComplete]};
+        props.edit ? props.editListing(listing) : props.addListing(listing)
         e.target.reset();
     }
-
-
-
+    
     return(
         <ResponsiveContainer>
         <ListingCard preview={true} listing={{location: watch('location', 'location'), type: watch('type', 'type'), nights: watch('nights', 'nights')}}/>
@@ -93,6 +113,25 @@ function ListingForm(props){
                     required: true,
                 })}
             />
+            <Label>Features</Label>
+            <Autocomplete
+                className = {classes.root}
+                onChange={(event, value) => setAutoComplete(value)}
+                multiple
+                id="tags-outlined"
+                options={['Washer', 'HairDryer']}
+                defaultValue={autoComplete}
+                getOptionLabel={option => option}
+                filterSelectedOptions
+                renderInput={params => (
+                <TextField
+                    {...params}
+                    variant="outlined"
+                    placeholder="Favorites"
+                />
+                )}
+            />
+
             <Input type='submit' className='submit-button' value='Add Listing'/>
         </Form>
         </ResponsiveContainer>
