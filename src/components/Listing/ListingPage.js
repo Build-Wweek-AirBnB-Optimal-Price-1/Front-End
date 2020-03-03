@@ -1,32 +1,42 @@
 import React, { useState, useEffect } from 'react';
-import ListingCard from './ListingCard';
-import { Link } from 'react-router-dom';
 import {connect} from 'react-redux';
-import {addListing} from '../../actions/listingActions'
+
+import {useHistory} from 'react-router-dom'
 
 import styled from 'styled-components';
+import theme from '../../theme';
+import {ResponsiveContainer, Title, CardContainer} from '../PresentationalComponents';
+import ListingCard from './ListingCard';
 
-const Title = styled.h1`
-    font-size: 2rem;
-    font-family: 'Raleway';
-    text-align: center;
-    margin-top: 60px;
-`;
 
-const SubNav = styled.div`
+
+const ControlBar = styled.div`
     display: flex;
     justify-content: space-between;
-    margin: 10px 30px;
+    margin: 10px 0px;
     border-bottom: 1px solid black;
     padding-bottom: 10px;
 `;
 
-const NewListing = styled.div`
-    display: flex;
-    align-items: center;
+const ControlBarText = styled.p`
+    font-size: 2rem;
+    font-family: 'Raleway';
+    margin-left: 10px;
+    -moz-user-select: none; 
+    -ms-user-select: none; 
+    -khtml-user-select: none; 
+    -webkit-user-select: none; 
+    -webkit-touch-callout: none;
+    cursor: pointer;
 `;
 
-const Button = styled.button`
+const ControlBarItem = styled.div`
+    display: flex;
+    align-items: center;
+   
+`;
+
+const PlusButton = styled.button`
     border: none;
     border-radius: 50%;
     width: 40px;
@@ -42,13 +52,12 @@ const Button = styled.button`
     &:hover{
         cursor: pointer;
     }
+    &:after {
+        content: "+"
+    }
 `;
 
-const SubTitle = styled.h6`
-    font-size: 2rem;
-    font-family: 'Raleway';
-    margin-left: ${props => props.margin ? '10px' : '0'};
-`;
+
 
 /*
     ListingPage
@@ -58,6 +67,7 @@ const SubTitle = styled.h6`
                 search for a current listing
 */
 function ListingPage(props){    
+    const history = useHistory()
     /*
         Renders when component mounts
         Re-renders whenever there is a change to isFetching from props
@@ -69,21 +79,23 @@ function ListingPage(props){
     }else{
         return (
             <div>
+                <ResponsiveContainer>
                 <Title>My Listings</Title>
-                <SubNav>
-                    <NewListing>
-                        <Link to='/listings/add'><Button>+</Button></Link>
-                        <SubTitle margin>Add New Listing</SubTitle>
-                    </NewListing>
-                    <div className='search'>
-                        <SubTitle>Search</SubTitle>
-                    </div>
-                </SubNav>
-                <div className='listings-container'>
+                <ControlBar>
+                    <ControlBarItem onClick={() => history.push('/listings/add')}>
+                        <PlusButton />
+                        <ControlBarText margin>Add New Listing</ControlBarText>
+                    </ControlBarItem>
+                    <ControlBarItem>
+                        <ControlBarText>Search</ControlBarText>
+                    </ControlBarItem>
+                </ControlBar>
+                    <CardContainer>
                     {props.listings.map((listing, index) => {
                         return <ListingCard listing={listing} key={index}/>
                     })}
-                </div>
+                    </CardContainer>
+                </ResponsiveContainer>
             </div>
         );
     }

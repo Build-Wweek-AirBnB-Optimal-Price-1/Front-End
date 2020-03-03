@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './Listing.css'
+import styled from 'styled-components';
 
 /*
     Listing Card
@@ -18,19 +18,57 @@ import './Listing.css'
     @return: A card that displays listing information with a button that links
                 to a route with details and more options for the listing
 */
+
+const Card = styled.div`
+    border-radius: 10px;
+    width: 300px;
+    height: 200px;
+    padding: 20px;
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+    position: relative;
+    span {
+        font-size: 1.5rem
+    }
+`
+const CardTitle = styled.h3`
+    font-size: 2rem;
+    font-family: 'Raleway';
+`
+
+const CardText = styled.p`
+    font-size: 1.5rem;
+    font-family: 'Raleway'; 
+    margin: 10px 0;
+`
+const CardLink = styled.a`
+text-decoration: none;
+color: #00A699;
+font-size: 1.9rem;
+font-family: 'Raleway'; 
+`
+
+const CardDetails = styled.div`
+position: absolute;
+    bottom: 0;
+    margin-bottom: 20px;
+`
+
+
 function ListingCard(props){    
     return(
-        <div className='card'>
-            <h3>Location: <span style={{fontSize: '1.5rem'}}>location goes here</span></h3>
-            <p>Room Type: Room type goes here</p>
-            <p>Minimum Nights: 6</p>
-            <div className='details'>
+        <Card>
+            <CardTitle>Location: <span>location goes here</span></CardTitle>
+            <CardText>Room Type: Room type goes here</CardText>
+            <CardText>Minimum Nights: 6</CardText>
+            <CardDetails>
                 {props.preview && <a>Details</a>}
 
                 {/* Temporary hardcoded id value -> change to listing id */}
                 {props.preview === false && <Link to={`/details/1}`}>Details</Link>}
-            </div>
-        </div>
+            </CardDetails>
+        </Card>
     );
 }
 
