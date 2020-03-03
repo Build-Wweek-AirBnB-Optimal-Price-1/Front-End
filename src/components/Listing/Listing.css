@@ -1,3 +1,9 @@
+/* Listing Page Styles */
+.search{
+    display: flex;
+    align-items: center;
+}
+
 /* Card Styles */
 .card{
     border-radius: 10px;

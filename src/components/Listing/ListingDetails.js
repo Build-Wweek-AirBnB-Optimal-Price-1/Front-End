@@ -11,7 +11,7 @@ function ListingDetails(){
     const {id} = useParams();
     return(
         <div>
-
+            <h1>Listing Details</h1>
         </div>
     );
 }
