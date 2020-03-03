@@ -10,6 +10,7 @@ import Login from './components/Login';
 import SignUp from './components/SignUp';
 import SignUpInfo from './components/SingUpInfo';
 import ListingPage from './components/Listing/ListingPage';
+import AddListing from './components/Listing/AddListing';
 import { Route } from 'react-router-dom';
 import styled from 'styled-components';
 import './App.css';
@@ -38,8 +39,11 @@ function App() {
         <SignUpInfo/>
         <SignUp/>
       </Route>
-      <Route path='/listings'>
+      <Route exact path='/listings'>
         <ListingPage/>
+      </Route>
+      <Route path='/listings/add'>
+        <AddListing/>
       </Route>
     </div>
     </Provider>

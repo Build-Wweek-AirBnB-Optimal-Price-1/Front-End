@@ -1,0 +1,11 @@
+.preview-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+}
+
+.container{
+    margin-top: 120px;
+    display: flex;
+}
