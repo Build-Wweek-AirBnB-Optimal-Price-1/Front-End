@@ -16,7 +16,7 @@ export const Title = styled.h1`
     font-size: 2rem;
     font-family: 'Raleway';
     text-align: center;
-    margin-top: 60px;
+
 `;
 
 ////Card container component

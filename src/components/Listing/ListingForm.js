@@ -1,6 +1,14 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import {useParams} from 'react-router-dom';
+import {connect} from 'react-redux';
+import {addListing, editListing} from '../../actions/listingActions';
+
+import ListingCard from './ListingCard';
+
+
 import styled from 'styled-components';
+import {ResponsiveContainer} from '../PresentationalComponents';
 
 const Form = styled.form`
     width: 50%;
@@ -43,16 +51,24 @@ const Label = styled.label`
     @return: Returns a form that accepts input for adding or editing a listing
 */
 function ListingForm(props){
-    const { register, handleSubmit } = useForm();
+    const {id} = useParams();
+
+    const { register, handleSubmit, watch } = useForm({defaultValues: {
+        ...props.listings.find((listing) => listing.id === id)
+    }});
 
     const onSubmit = (data, e) => {
         console.log(data);
         // Add listing to state/overwrite current listing in state
-        props.listingAction(data);
+        props.edit ? props.editListing(data) : props.addListing(data)
         e.target.reset();
     }
 
+
+
     return(
+        <ResponsiveContainer>
+        <ListingCard preview={true} listing={{location: watch('location', 'location'), type: watch('type', 'type'), nights: watch('nights', 'nights')}}/>
         <Form onSubmit={handleSubmit(onSubmit)}>
             <Label>Location</Label>
             <Input
@@ -79,7 +95,15 @@ function ListingForm(props){
             />
             <Input type='submit' className='submit-button' value='Add Listing'/>
         </Form>
+        </ResponsiveContainer>
     )
 }
 
-export default ListingForm;
+const mapStateToProps = (state) => {
+    return {
+        listings: state.listings,
+        error: state.error
+    };
+}
+
+export default connect (mapStateToProps, {addListing, editListing})(ListingForm);

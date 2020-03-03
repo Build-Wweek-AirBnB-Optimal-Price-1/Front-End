@@ -102,7 +102,7 @@ function ListingDetails(){
                 <CardText>Room Type: Room Type Here</CardText>
                 <CardText>Minimum Nights: 11</CardText>
                 <ButtonContainer>
-                    <DetailsButton onClick={() => history.push('/edit')}>Edit Listing</DetailsButton>
+                    <DetailsButton onClick={() => history.push(`/listings/edit/${id}`)}>Edit Listing</DetailsButton>
                     <DetailsButton delete onClick={handleConfirm}>Delete Listing</DetailsButton>
                 </ButtonContainer>
                 {confirmDelete && 
