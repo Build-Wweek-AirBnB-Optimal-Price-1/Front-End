@@ -21,7 +21,7 @@ export const loginAction = (credentials, setLoginError) => {
       .then(res => {
         //Saves the auth token in localstorage to be used in listing requests
         window.localStorage.setItem('token', res.data.payload);
-        window.history.replace('/listings');
+        window.history.replaceState('/listings');
       })
       .catch(err => setLoginError(err))
 }
@@ -29,5 +29,5 @@ export const loginAction = (credentials, setLoginError) => {
 //To be used with any user event that logs the user out, logout button, etc
 export const logoutAction = () => {
   window.localStorage.removeItem('token');
-  window.history.replace('/login');
+  window.history.replaceState('/login');
 }
