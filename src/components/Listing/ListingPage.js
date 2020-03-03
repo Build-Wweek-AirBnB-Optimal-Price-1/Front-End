@@ -50,6 +50,13 @@ const SubTitle = styled.h6`
     margin-left: ${props => props.margin ? '10px' : '0'};
 `;
 
+/*
+    ListingPage
+    @props: All listing objects stored in redux
+            Various methods -> Refer to reducers/listingReducer.js -> initialState
+    @return: A page that displays all listings and has an option to add a new listing or
+                search for a current listing
+*/
 function ListingPage(props){
 
     return (

@@ -1,0 +1,35 @@
+/* Card Styles */
+.card{
+    border-radius: 10px;
+    width: 300px;
+    height: 200px;
+    padding: 20px;
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+    position: relative;
+}
+
+.card h3{
+    font-size: 2rem;
+    font-family: 'Raleway';
+}
+
+.card p{
+    font-size: 1.5rem;
+    font-family: 'Raleway'; 
+    margin: 10px 0;
+}
+
+.card a{
+    text-decoration: none;
+    color: #00A699;
+    font-size: 1.9rem;
+    font-family: 'Raleway'; 
+}
+
+.card .details{
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 20px;
+}
