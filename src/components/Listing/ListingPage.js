@@ -92,7 +92,7 @@ function ListingPage(props){
                 </ControlBar>
                     <CardContainer>
                     {props.listings.map((listing, index) => {
-                        return <ListingCard listing={listing} key={index}/>
+                        return <ListingCard preview={false} listing={listing} key={index}/>
                     })}
                     </CardContainer>
                 </ResponsiveContainer>

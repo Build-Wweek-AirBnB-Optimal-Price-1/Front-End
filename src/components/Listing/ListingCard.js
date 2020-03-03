@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 
 /*
@@ -42,31 +42,33 @@ const CardText = styled.p`
     font-family: 'Raleway'; 
     margin: 10px 0;
 `
-const CardLink = styled.a`
-text-decoration: none;
-color: #00A699;
-font-size: 1.9rem;
-font-family: 'Raleway'; 
-`
 
 const CardDetails = styled.div`
-position: absolute;
+    position: absolute;
     bottom: 0;
     margin-bottom: 20px;
+    span {
+        text-decoration: none;
+        color: #00A699;
+        font-size: 1.9rem;
+        font-family: 'Raleway';
+        cursor: pointer;   
+    }
 `
 
 
 function ListingCard(props){    
+    const history = useHistory()
     return(
         <Card>
             <CardTitle>Location: <span>location goes here</span></CardTitle>
             <CardText>Room Type: Room type goes here</CardText>
             <CardText>Minimum Nights: 6</CardText>
             <CardDetails>
-                {props.preview && <a>Details</a>}
+                {props.preview && <span>Details</span>}
 
                 {/* Temporary hardcoded id value -> change to listing id */}
-                {props.preview === false && <Link to={`/details/1}`}>Details</Link>}
+                {props.preview === false && <span onClick={() => {history.push(`details/${props.listing.id}`)}} to={`/details/1}`}>Details</span>}
             </CardDetails>
         </Card>
     );
