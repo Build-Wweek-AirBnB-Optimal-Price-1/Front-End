@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
-import { Title, CardTitle, CardText, ResponsiveContainer } from '../PresentationalComponents';
+import { Title, Card, CardTitle, CardText, ResponsiveContainer } from '../PresentationalComponents';
 import { deleteListing } from '../../actions/listingActions';
 import theme from '../../theme';
 import styled from 'styled-components';
@@ -65,16 +65,24 @@ const Text = styled.p`
 */
 function ListingDetails(){
     const {id} = useParams();
-    const [ data, setData ] = useState([]);
+    const [ listing, setListing ] = useState({});
     const [ confirmDelete, setConfirmDelete ] = useState(false);
     const history = useHistory();
 
     useEffect(() => {
+        //Dummy data
+        setListing(
+            {
+                title: 'Berlin Downtown Apartment',
+                bedrooms: 2,
+                bathrooms: 1
+            }
+        )
         // Fix url when we get endpoints
         axios.get(`/listings/${id}`)
         .then(res => {
             console.log(res);
-            // Set state
+            // setData(res.data)
         })
         .catch(err => {
             console.log(err);
@@ -98,12 +106,12 @@ function ListingDetails(){
         <div>
             <ResponsiveContainer>
             <Title>Listing Details</Title>
-            <DetailsContainer>
-                <CardTitle>Location: <span>Location Here</span></CardTitle>
-                <CardText>Room Type: Room Type Here</CardText>
-                <CardText>Minimum Nights: 11</CardText>
+            <Card>
+                <CardTitle>{listing.title}</CardTitle>
+                <CardText>Bedrooms: {listing.bedrooms}</CardText>
+                <CardText>Bathrooms: {listing.bathrooms}</CardText>
                 <ButtonContainer>
-                    <DetailsButton onClick={() => history.push(`/listings/edit/${id}`)}>Edit Listing</DetailsButton>
+                    <DetailsButton onClick={() => history.push(`/listings/edit/${listing.id}`)}>Edit Listing</DetailsButton>
                     <DetailsButton delete onClick={handleConfirm}>Delete Listing</DetailsButton>
                 </ButtonContainer>
                 {confirmDelete && 
@@ -112,7 +120,7 @@ function ListingDetails(){
                     <ConfirmButton onClick={handleDelete}>Confirm</ConfirmButton>
                     <ConfirmButton onClick={handleCancel}>Cancel</ConfirmButton>
                 </ConfirmDelete>}
-            </DetailsContainer>
+            </Card>
             </ResponsiveContainer>
         </div>
     );
