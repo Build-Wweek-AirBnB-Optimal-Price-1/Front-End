@@ -18,27 +18,33 @@ const initialState = {
         id: 1234,
         title: 'Berlin Downtown Apartment',
         bedrooms: 2,
-        bathrooms: 1
+        bathrooms: 1,
+        price: null
+
     },
     {
         id: 5678,
         title: 'Luxury Home In Suburban Berlin',
         bedrooms: 3,
-        bathrooms: 3
+        bathrooms: 3,
+        price: null
         
     },
     {
         id: 1239,
         title: 'Luxury Ship in River',
         bedrooms: 1,
-        bathrooms: 1
+        bathrooms: 1,
+        price: null
+
         
     },
     {
         id: 3425,
         title: 'Guest House in Berlin',
         bedrooms: 1,
-        bathrooms: 1
+        bathrooms: 1,
+        price: null
         
     },
     ],
