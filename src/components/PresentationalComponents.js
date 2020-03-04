@@ -40,12 +40,18 @@ export const CardContainer = styled.div`
 `
 
 export const CardDetails = styled.div`
-    span {
+    span{
         text-decoration: none;
         color: #00A699;
         font-size: 1.9rem;
         font-family: 'Raleway';
         cursor: pointer;   
+    }
+    p{
+        text-decoration: none;
+        color: #00A699;
+        font-size: 1.9rem;
+        font-family: 'Raleway';
     }
     margin-top: 27.5px;
 `

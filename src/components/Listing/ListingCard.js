@@ -29,7 +29,7 @@ function ListingCard(props){
             <CardText><CardSubtitle>Optimal Price:</CardSubtitle> {props.listing.price ? `€${props.listing.price}` : 'Not yet calculated.'}</CardText>
             
             <CardDetails>
-                {props.preview && <span>Details</span>}
+                {props.preview && <p>Details</p>}
                 {props.preview === false && <span onClick={() => {history.push(`/listings/details/${props.listing.id}`)}} >Details</span>}
             </CardDetails>
         </Card>
