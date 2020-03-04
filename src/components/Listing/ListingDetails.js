@@ -5,7 +5,6 @@ import { deleteListing } from '../../actions/listingActions';
 import { connect } from 'react-redux';
 import theme from '../../theme';
 import styled from 'styled-components';
-import axios from 'axios';
 
 const ButtonContainer = styled.div`
     display: flex;
@@ -24,7 +23,7 @@ const DetailsButton = styled.div`
 `;
 
 const ConfirmDelete = styled.div`
-    margin: 20px 0;
+    margin: 20px auto;
     width: 400px;
     background-color: ${theme.colors.red};
     padding: 10px;
@@ -116,13 +115,13 @@ function ListingDetails(props){
                         <DetailsButton onClick={() => history.push(`/listings/edit/${listing.id}`)}>Edit Listing</DetailsButton>
                         <DetailsButton delete onClick={handleConfirm}>Delete Listing</DetailsButton>
                     </ButtonContainer>
-                    {confirmDelete && 
-                    <ConfirmDelete>
-                        <Text>Are you sure you want to delete this listing?</Text>
-                        <ConfirmButton onClick={handleDelete}>Confirm</ConfirmButton>
-                        <ConfirmButton onClick={handleCancel}>Cancel</ConfirmButton>
-                    </ConfirmDelete>}
                 </Card>
+                {confirmDelete && 
+                <ConfirmDelete>
+                    <Text>Are you sure you want to delete this listing?</Text>
+                    <ConfirmButton onClick={handleDelete}>Confirm</ConfirmButton>
+                    <ConfirmButton onClick={handleCancel}>Cancel</ConfirmButton>
+                </ConfirmDelete>}
             </ResponsiveContainer>
         </div>
     );
