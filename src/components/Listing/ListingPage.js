@@ -27,16 +27,16 @@ function ListingPage(props){
         return (
 
                 <ResponsiveContainer>
-                <Title>My Listings</Title>
-                <ControlBar>
-                    <ControlBarItem onClick={() => history.push('/listings/add')}>
-                        <PlusButton />
-                        <ControlBarText margin>Add New Listing</ControlBarText>
-                    </ControlBarItem>
-                    <ControlBarItem>
-                        <ControlBarText>Search</ControlBarText>
-                    </ControlBarItem>
-                </ControlBar>
+                    <Title>My Listings</Title>
+                    <ControlBar>
+                        <ControlBarItem onClick={() => history.push('/listings/add')}>
+                            <PlusButton />
+                            <ControlBarText margin>Add New Listing</ControlBarText>
+                        </ControlBarItem>
+                        <ControlBarItem>
+                            <ControlBarText>Search</ControlBarText>
+                        </ControlBarItem>
+                    </ControlBar>
                     <CardContainer>
                     {props.listings.map((listing, index) => {
                         return <ListingCard preview={false} listing={listing} key={index}/>

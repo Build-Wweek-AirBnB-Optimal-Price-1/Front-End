@@ -49,7 +49,7 @@ function ListingForm(props){
     
     return(
         <ResponsiveContainer>
-        <ListingCard preview={true} listing={{title: watch('title', 'title'), type: watch('type', 'type'), nights: watch('nights', 'nights')}}/>
+        <ListingCard preview={true} listing={{title: watch('title', 'title'), bedrooms: watch('bedrooms', 'bedrooms'), bathrooms: watch('bathrooms', 'bathrooms')}}/>
         <Form onSubmit={handleSubmit(onSubmit)}>
             <Label>Title</Label>
             <Input
