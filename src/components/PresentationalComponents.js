@@ -88,10 +88,11 @@ export const Form = styled.form`
     align-items: center;
 `;
 
+// 300 / 280
 export const Input = styled.input`
     width: 50%;
-    max-width: 400px;
-    min-width: 280px;
+    max-width: ${props => props.search ? '180px' : '300px'};
+    min-width: ${props => props.search ? '180px' : '280px'};
     height: 40px;
     border: none;
     outline: none;
@@ -134,6 +135,7 @@ export const ControlBarText = styled.p`
     font-size: 2rem;
     font-family: 'Raleway';
     margin-left: 10px;
+    margin-right: 20px;
     -moz-user-select: none; 
     -ms-user-select: none; 
     -khtml-user-select: none; 

@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {connect} from 'react-redux';
 import {useHistory} from 'react-router-dom'
 import { ResponsiveContainer, Title, CardContainer, 
         ControlBar, ControlBarText, ControlBarItem, 
-        PlusButton } from '../PresentationalComponents';
+        PlusButton, Input } from '../PresentationalComponents';
 import ListingCard from './ListingCard';
 
 /*
@@ -15,6 +15,23 @@ import ListingCard from './ListingCard';
 */
 function ListingPage(props){    
     const history = useHistory()
+    const [search, setSearch] = useState(props.listings);
+    const [input, setInput] = useState('');
+
+    function handleChange(e){
+        setInput(e.target.value)
+    }
+
+    useEffect(() => {
+        if(input){
+            setSearch(search.filter(listing => {
+                return listing.title.toLowerCase().includes(input.toLowerCase());
+            }))
+        }else{
+            setSearch(props.listings);
+        }
+    }, [props.listings, input])
+
     /*
         Renders when component mounts
         Re-renders whenever there is a change to isFetching from props
@@ -25,7 +42,6 @@ function ListingPage(props){
         );
     }else{
         return (
-
                 <ResponsiveContainer>
                     <Title>My Listings</Title>
                     <ControlBar>
@@ -35,10 +51,13 @@ function ListingPage(props){
                         </ControlBarItem>
                         <ControlBarItem>
                             <ControlBarText>Search</ControlBarText>
+                            <form>
+                                <Input search onChange={handleChange}></Input>
+                            </form>
                         </ControlBarItem>
                     </ControlBar>
                     <CardContainer>
-                    {props.listings.map((listing, index) => {
+                    {search.map((listing, index) => {
                         return <ListingCard preview={false} listing={listing} key={index}/>
                     })}
                     </CardContainer>
