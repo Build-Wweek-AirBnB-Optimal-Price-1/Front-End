@@ -1,32 +1,6 @@
-import React, { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
-import { CardTitle, CardText } from '../PresentationalComponents';
-import styled from 'styled-components';
-
-const Card = styled.div`
-    border-radius: 10px;
-    width: 300px;
-    height: 100px;
-    padding: 20px;
-    -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
-    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
-    position: relative;
-    margin: 20px;
-`
-
-const CardDetails = styled.div`
-    position: absolute;
-    bottom: 0;
-    margin-bottom: 20px;
-    span {
-        text-decoration: none;
-        color: #00A699;
-        font-size: 1.9rem;
-        font-family: 'Raleway';
-        cursor: pointer;   
-    }
-`
+import React from 'react';
+import { useHistory } from 'react-router-dom';
+import { CardTitle, CardText, Card, CardDetails } from '../PresentationalComponents';
 
 /*
     Listing Card
@@ -34,8 +8,9 @@ const CardDetails = styled.div`
             {
                 id: num
                 type: 'string'
-                nights: num
+                nights: 'string'
                 location: 'string'
+                features: ['strings']
             }
 
             A {preview} boolean values to represent if the card is for preview or not
@@ -53,8 +28,6 @@ function ListingCard(props){
             <CardText>Minimum Nights: {props.listing.nights}</CardText>
             <CardDetails>
                 {props.preview && <span>Details</span>}
-
-                {/* Temporary hardcoded id value -> change to listing id */}
                 {props.preview === false && <span onClick={() => {history.push(`/listings/details/${props.listing.id}`)}} >Details</span>}
             </CardDetails>
         </Card>
