@@ -20,13 +20,13 @@ function Header(){
     }else{
         return(
             <HeaderStruct>
-                <HeaderLogo src={Logo} alt='Optimal BNB' />
+                <a href='https://build-wweek-airbnb-optimal-price-1.github.io/Marketing-Page/index.html'><HeaderLogo src={Logo} alt='Optimal BNB' /></a>
                 <Navigation>
                     {/* Temporary link for development */}
                     <Link to='/listings'>Listings</Link>
 
                     {/* Link to marketing about page */}
-                    <a>About</a>
+                    <a href={'https://build-wweek-airbnb-optimal-price-1.github.io/Marketing-Page/about-us.html'}>About</a>
 
                     <Link to='/login'>Login</Link>
                     <Link to='/signup'><LinkContainer>Sign Up</LinkContainer></Link>

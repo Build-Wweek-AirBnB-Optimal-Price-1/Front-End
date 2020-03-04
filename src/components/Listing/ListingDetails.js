@@ -9,6 +9,8 @@ import axios from 'axios';
 
 const ButtonContainer = styled.div`
     display: flex;
+    justify-content: center;
+    margin-top: 30px;
 `;
 
 const DetailsButton = styled.div`

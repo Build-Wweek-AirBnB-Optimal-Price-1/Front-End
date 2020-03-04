@@ -56,11 +56,13 @@ function ListingForm(props){
                 name='title'
                 ref={register({
                     required: true,
-                    minLength: 4
+                    minLength: 4,
+                    maxLength: 50
                 })}
             />
             {errors.title && errors.title.type === 'required' && <Error margin>Please enter a title</Error>}
             {errors.title && errors.title.type === 'minLength' && <Error margin>Title must be at least 4 characters long</Error>}
+            {errors.title && errors.title.type === 'maxLength' && <Error margin>Keep the title under 40 characters</Error>}
             <Label>Bedrooms</Label>
             <Input
                 name='bedrooms'
@@ -68,11 +70,13 @@ function ListingForm(props){
                     required: true,
                     pattern: {
                         value: /^[0-9]*$/gm
-                    }
+                    },
+                    maxLength: 2
                 })}
             />
             {errors.bedrooms && errors.bedrooms.type === 'required' && <Error margin>Please enter number of bedrooms</Error>}
             {errors.bedrooms && errors.bedrooms.type === 'pattern' && <Error margin>Number of bedrooms must be a number</Error>}
+            {errors.bedrooms && errors.bedrooms.type === 'maxLength' && <Error margin>Number of bedrooms must be less than 100</Error>}
             <Label>Bathrooms</Label>
             <Input
                 name='bathrooms'
@@ -80,11 +84,13 @@ function ListingForm(props){
                     required: true,
                     pattern: {
                         value: /^[0-9]*$/gm
-                    }
+                    },
+                    maxLength: 2
                 })}
             />
             {errors.bathrooms && errors.bathrooms.type === 'required' && <Error margin>Please enter number of bathrooms</Error>}
             {errors.bathrooms && errors.bathrooms.type === 'pattern' && <Error margin>Number of bathrooms must be a number</Error>}
+            {errors.bathrooms && errors.bathrooms.type === 'maxLength' && <Error margin>Number of bathrooms must be less than 100</Error>}
             {/* <Label>Features</Label>
             <Autocomplete
                 className = {classes.root}
