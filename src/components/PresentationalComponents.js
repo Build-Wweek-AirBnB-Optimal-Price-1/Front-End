@@ -15,7 +15,7 @@ export const ResponsiveContainer = styled.main`
 `
 //Title component
 export const Title = styled.h1`
-    font-size: 2rem;
+    font-size: 2.6rem;
     font-family: 'Raleway';
     text-align: center;
     color: ${props => props.info ? 'white' : 'black'}
