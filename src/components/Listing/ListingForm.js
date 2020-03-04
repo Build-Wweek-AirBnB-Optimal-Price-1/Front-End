@@ -1,84 +1,46 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import { useForm } from 'react-hook-form';
 import {useParams} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {addListing, editListing} from '../../actions/listingActions';
+import ListingCard from './ListingCard';
+import {ResponsiveContainer, Form, Input, Label, Error} from '../PresentationalComponents';
 
 // Material UI Imports
-import Chip from '@material-ui/core/Chip';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 
-import ListingCard from './ListingCard';
-
-
-import styled from 'styled-components';
-import {ResponsiveContainer} from '../PresentationalComponents';
-
-const Form = styled.form`
-    width: 50%;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-`;
-
-const Input = styled.input`
-    width: 50%;
-    max-width: 400px;
-    min-width: 280px;
-    height: 40px;
-    border: none;
-    outline: none;
-    border-radius: 10px;
-    -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
-    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
-    -webkit-appearance: none;
-    margin: 20px auto;
-    padding: 0 10px;
-    font-size: 1.2rem;
-    font-family: 'Raleway';
-`;
-
-const Label = styled.label`
-    font-size: 1.5rem;
-    text-align: center;
-    font-family: 'Raleway';
-`;
-
-/*
-    Listing Form
-    @props: A listing action that
-            - if addListing is passed through, the listing will be added to listings state
-            - if editListings is passed through, the listing will update the same listing in state
-    @return: Returns a form that accepts input for adding or editing a listing
-*/
-
+// Auto Complete Multiple Input Styles
 const useStyles = makeStyles(theme => ({
     root: {
-      width: '300px',
-      minWidth: '300px',
+      margin: '20px 0',
+      width: '50%',
+      maxWidth: '400px',
+      minWidth: '280px',
+      border: 0,
       boxShadow: '0px 0px 5px 0px rgba(0,0,0,0.75)',
-      border: 'none',
-      borderRadius: '10px',
+      borderRadius: '5px',
       '& > * + *': {
         marginTop: theme.spacing(3),
       },
-    },
+    }
   }));
 
+/*
+    Listing Form
+    @return: Returns a form that accepts input for adding or editing a listing
+*/
 function ListingForm(props){
     const classes = useStyles();
 
     const {id} = useParams();
-    const [ autoComplete, setAutoComplete] = useState(props.listings.find((listing) => listing.id === id).features);
+    const [ autoComplete, setAutoComplete] = useState(props.listings.find(listing => listing.id === parseInt(id, 10).features));
 
-    const { register, handleSubmit, watch } = useForm({defaultValues: {
-        ...props.listings.find((listing) => listing.id === id)
+    const { register, handleSubmit, errors, watch } = useForm({defaultValues: {
+        ...props.listings.find((listing) => listing.id === parseInt(id, 10))
     }});
+
 
     const onSubmit = (data, e) => {
         const listing = {...data, features: [...autoComplete]};
@@ -98,21 +60,30 @@ function ListingForm(props){
                     minLength: 6
                 })}
             />
+            {errors.location && errors.location.type === 'required' && <Error margin>Please enter a location</Error>}
+            {errors.location && errors.location.type === 'minLength' && <Error margin>Location must be at least 4 characters long</Error>}
             <Label>Room Type</Label>
             <Input
                 name='type'
                 ref={register({
                     required: true,
-                    minLength: 6
+                    minLength: 3
                 })}
             />
+            {errors.type && errors.type.type === 'required' && <Error margin>Please enter a room type</Error>}
+            {errors.type && errors.type.type === 'minLength' && <Error margin>Room type must be at least 3 characters long</Error>}
             <Label>Minimum Nights Required</Label>
             <Input
                 name='nights'
                 ref={register({
                     required: true,
+                    pattern: {
+                        value: /^[0-9]*$/gm
+                    }
                 })}
             />
+            {errors.nights && errors.nights.type === 'required' && <Error margin>Please enter a minimum amount of nights</Error>}
+            {errors.nights && errors.nights.type === 'pattern' && <Error margin>Minimum nights must be a number</Error>}
             <Label>Features</Label>
             <Autocomplete
                 className = {classes.root}
@@ -126,13 +97,11 @@ function ListingForm(props){
                 renderInput={params => (
                 <TextField
                     {...params}
-                    variant="outlined"
-                    placeholder="Favorites"
                 />
                 )}
             />
 
-            <Input type='submit' className='submit-button' value='Add Listing'/>
+            <Input type='submit' className='submit-button' value={`${props.edit ? 'Edit Listing' : 'Add Listing'}`}/>
         </Form>
         </ResponsiveContainer>
     )

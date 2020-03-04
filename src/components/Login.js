@@ -1,47 +1,7 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import styled from 'styled-components';
 import { loginAction } from '../actions/authActions';
-
-const Form = styled.form`
-    width: 100%;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-`;
-
-const Input = styled.input`
-    width: 50%;
-    max-width: 400px;
-    min-width: 280px;
-    height: 40px;
-    border: none;
-    outline: none;
-    border-radius: 10px;
-    -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
-    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
-    -webkit-appearance: none;
-    margin: 20px auto;
-    padding: 0 10px;
-    font-size: 1.2rem;
-    font-family: 'Raleway';
-`;
-
-const Label = styled.label`
-    font-size: 1.5rem;
-    text-align: center;
-    font-family: 'Raleway';
-`;
-
-const Error = styled.p`
-    font-size: 1.5rem;
-    text-align: center;
-    font-family: 'Raleway';
-    color: red;
-    margin-bottom: ${props => props.margin ? '20px' : '0'};
-`;
+import { Form, Input, Label, Error } from './PresentationalComponents';
 
 function Login(){
     const { register, handleSubmit, errors } = useForm();

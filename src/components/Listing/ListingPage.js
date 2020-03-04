@@ -1,62 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import {connect} from 'react-redux';
-
 import {useHistory} from 'react-router-dom'
-
-import styled from 'styled-components';
-import theme from '../../theme';
-import {ResponsiveContainer, Title, CardContainer} from '../PresentationalComponents';
+import { ResponsiveContainer, Title, CardContainer, 
+        ControlBar, ControlBarText, ControlBarItem, 
+        PlusButton } from '../PresentationalComponents';
 import ListingCard from './ListingCard';
-
-const ControlBar = styled.div`
-    display: flex;
-    max-width: 900px;
-    justify-content: space-between;
-    margin: 10px auto;
-    border-bottom: 1px solid black;
-    padding-bottom: 10px;
-`;
-
-const ControlBarText = styled.p`
-    font-size: 2rem;
-    font-family: 'Raleway';
-    margin-left: 10px;
-    -moz-user-select: none; 
-    -ms-user-select: none; 
-    -khtml-user-select: none; 
-    -webkit-user-select: none; 
-    -webkit-touch-callout: none;
-    cursor: pointer;
-`;
-
-const ControlBarItem = styled.div`
-    display: flex;
-    align-items: center;
-   
-`;
-
-const PlusButton = styled.button`
-    border: none;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #FF5A5F;
-    color: white;
-    font-size: 3rem;
-    font-family: 'Raleway';
-    outline: none;
-    &:hover{
-        cursor: pointer;
-    }
-    &:after {
-        content: "+"
-    }
-`;
-
-
 
 /*
     ListingPage

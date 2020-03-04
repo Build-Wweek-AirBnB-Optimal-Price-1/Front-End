@@ -15,7 +15,7 @@ import {
 
 const initialState = {
     listings: [{
-        id: '1',
+        id: 1,
         type: 'room',
         nights: '3',
         location: 'downtown',
@@ -28,7 +28,11 @@ const initialState = {
         id: 2,
         type: 'apartment',
         nights: '5',
-        location: 'city'
+        location: 'city',
+        features: [
+            'Tv',
+            'Nice View'
+        ]
     }
     ],
     isFetching: false,
