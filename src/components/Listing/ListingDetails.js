@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { Title, Card, CardTitle, CardText, ResponsiveContainer } from '../PresentationalComponents';
 import { deleteListing } from '../../actions/listingActions';
@@ -58,9 +58,16 @@ const Text = styled.p`
 */
 function ListingDetails(props){
     const {id} = useParams();
-    const [ listing ] = useState(props.listings.find((listing) => listing.id === parseInt(id, 10)));
+    const [listing, setListing] = useState({})
     const [ confirmDelete, setConfirmDelete ] = useState(false);
     const history = useHistory();
+    
+    useEffect(() => {
+        setListing({
+            ...props.listings.find(listing => listing.id === id*1)
+        })
+    }, [props.listings]) 
+
 
     // useEffect(() => {
     //     //Dummy data
