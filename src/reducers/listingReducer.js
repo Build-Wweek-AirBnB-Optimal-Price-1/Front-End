@@ -15,25 +15,32 @@ import {
 
 const initialState = {
     listings: [{
-        id: 1,
-        type: 'room',
-        nights: '3',
-        location: 'downtown',
-        features: [
-            'Tv',
-            'Nice View'
-        ]
+        id: 1234,
+        title: 'Berlin Downtown Apartment',
+        bedrooms: 2,
+        bathrooms: 1
     },
     {
-        id: 2,
-        type: 'apartment',
-        nights: '5',
-        location: 'city',
-        features: [
-            'Tv',
-            'Nice View'
-        ]
-    }
+        id: 5678,
+        title: 'Luxury Home In Suburban Berlin',
+        bedrooms: 3,
+        bathrooms: 3
+        
+    },
+    {
+        id: 0123,
+        title: 'Luxury Ship in River',
+        bedrooms: 1,
+        bathrooms: 1
+        
+    },
+    {
+        id: 3425,
+        title: 'Guest House in Berlin',
+        bedrooms: 1,
+        bathrooms: 1
+        
+    },
     ],
     isFetching: false,
     isAdding: false,
