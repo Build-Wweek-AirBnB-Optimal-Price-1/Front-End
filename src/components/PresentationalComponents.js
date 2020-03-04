@@ -100,7 +100,7 @@ export const Input = styled.input`
     -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
     box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
     -webkit-appearance: none;
-    margin: 20px auto;
+    margin: 20px 0px;
     padding: 0 10px;
     font-size: 1.2rem;
     font-family: 'Raleway';
