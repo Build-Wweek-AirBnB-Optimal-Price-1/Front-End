@@ -23,9 +23,9 @@ function ListingCard(props){
     const history = useHistory()
     return(
         <Card>
-            <CardTitle>Location: <span>{props.listing.location}</span></CardTitle>
-            <CardText>Room Type: {props.listing.type}</CardText>
-            <CardText>Minimum Nights: {props.listing.nights}</CardText>
+            <CardTitle>{props.listing.title}</CardTitle>
+            <CardText>Bedrooms: {props.listing.bedrooms}</CardText>
+            <CardText>Bathrooms: {props.listing.bathrooms}</CardText>
             <CardDetails>
                 {props.preview && <span>Details</span>}
                 {props.preview === false && <span onClick={() => {history.push(`/listings/details/${props.listing.id}`)}} >Details</span>}

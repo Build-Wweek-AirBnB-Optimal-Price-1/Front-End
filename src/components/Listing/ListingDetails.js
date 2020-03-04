@@ -1,18 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { Title, Card, CardTitle, CardText, ResponsiveContainer } from '../PresentationalComponents';
 import { deleteListing } from '../../actions/listingActions';
+import { connect } from 'react-redux';
 import theme from '../../theme';
 import styled from 'styled-components';
 import axios from 'axios';
-
-const DetailsContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    margin-top: 40px;
-`;
 
 const ButtonContainer = styled.div`
     display: flex;
@@ -63,31 +56,31 @@ const Text = styled.p`
     @return: A page that displays current listing information based off of given id.
                 Two buttons -> Edit Listing and Delete Listing
 */
-function ListingDetails(){
+function ListingDetails(props){
     const {id} = useParams();
-    const [ listing, setListing ] = useState({});
+    const [ listing ] = useState(props.listings.find((listing) => listing.id === parseInt(id, 10)));
     const [ confirmDelete, setConfirmDelete ] = useState(false);
     const history = useHistory();
 
-    useEffect(() => {
-        //Dummy data
-        setListing(
-            {
-                title: 'Berlin Downtown Apartment',
-                bedrooms: 2,
-                bathrooms: 1
-            }
-        )
-        // Fix url when we get endpoints
-        axios.get(`/listings/${id}`)
-        .then(res => {
-            console.log(res);
-            // setData(res.data)
-        })
-        .catch(err => {
-            console.log(err);
-        })
-    }, [])
+    // useEffect(() => {
+    //     //Dummy data
+    //     setListing(
+    //         {
+    //             title: 'Berlin Downtown Apartment',
+    //             bedrooms: 2,
+    //             bathrooms: 1
+    //         }
+    //     )
+    //     // Fix url when we get endpoints
+    //     axios.get(`/listings/${id}`)
+    //     .then(res => {
+    //         console.log(res);
+    //         // setData(res.data)
+    //     })
+    //     .catch(err => {
+    //         console.log(err);
+    //     })
+    // }, [])
 
     function handleConfirm(){
         setConfirmDelete(true);
@@ -105,25 +98,31 @@ function ListingDetails(){
     return(
         <div>
             <ResponsiveContainer>
-            <Title>Listing Details</Title>
-            <Card>
-                <CardTitle>{listing.title}</CardTitle>
-                <CardText>Bedrooms: {listing.bedrooms}</CardText>
-                <CardText>Bathrooms: {listing.bathrooms}</CardText>
-                <ButtonContainer>
-                    <DetailsButton onClick={() => history.push(`/listings/edit/${listing.id}`)}>Edit Listing</DetailsButton>
-                    <DetailsButton delete onClick={handleConfirm}>Delete Listing</DetailsButton>
-                </ButtonContainer>
-                {confirmDelete && 
-                <ConfirmDelete>
-                    <Text>Are you sure you want to delete this listing?</Text>
-                    <ConfirmButton onClick={handleDelete}>Confirm</ConfirmButton>
-                    <ConfirmButton onClick={handleCancel}>Cancel</ConfirmButton>
-                </ConfirmDelete>}
-            </Card>
+                <Title>Listing Details</Title>
+                <Card>
+                    <CardTitle>{listing.title}</CardTitle>
+                    <CardText>Bedrooms: {listing.bedrooms}</CardText>
+                    <CardText>Bathrooms: {listing.bathrooms}</CardText>
+                    <ButtonContainer>
+                        <DetailsButton onClick={() => history.push(`/listings/edit/${listing.id}`)}>Edit Listing</DetailsButton>
+                        <DetailsButton delete onClick={handleConfirm}>Delete Listing</DetailsButton>
+                    </ButtonContainer>
+                    {confirmDelete && 
+                    <ConfirmDelete>
+                        <Text>Are you sure you want to delete this listing?</Text>
+                        <ConfirmButton onClick={handleDelete}>Confirm</ConfirmButton>
+                        <ConfirmButton onClick={handleCancel}>Cancel</ConfirmButton>
+                    </ConfirmDelete>}
+                </Card>
             </ResponsiveContainer>
         </div>
     );
 }
 
-export default ListingDetails;
+const mapStateToProps = (state) => {
+    return {
+        listings: state.listings
+    }
+}
+
+export default connect(mapStateToProps)(ListingDetails);
