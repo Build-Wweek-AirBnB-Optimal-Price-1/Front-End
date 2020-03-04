@@ -40,9 +40,6 @@ export const CardContainer = styled.div`
 `
 
 export const CardDetails = styled.div`
-    position: absolute;
-    bottom: 0;
-    margin-bottom: 20px;
     span {
         text-decoration: none;
         color: #00A699;
@@ -50,13 +47,13 @@ export const CardDetails = styled.div`
         font-family: 'Raleway';
         cursor: pointer;   
     }
+    margin-top: 27.5px;
 `
 
 export const Card = styled.div`
     border-radius: 10px;
     width: 300px;
-    height: 130px;
-    padding: 20px;
+    padding: 30px 20px;
     -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
     box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
@@ -70,12 +67,18 @@ export const CardTitle = styled.h3`
     span{
         font-size: 1.5rem;
     }
+    margin-bottom: 25px;
 `
 
 export const CardText = styled.p`
-    font-size: 1.5rem;
+    font-size: 1.55rem;
     font-family: 'Raleway'; 
     margin: 10px 0;
+    
+`
+export const CardSubtitle = styled.span`
+    font-weight: bold;
+    font-size: 1.575rem;
 `
 
 // ---------- Form Components ---------- //

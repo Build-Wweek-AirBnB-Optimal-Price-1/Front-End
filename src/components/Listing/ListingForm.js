@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { useForm } from 'react-hook-form';
 import {useParams} from 'react-router-dom';
 import {connect} from 'react-redux';
@@ -37,8 +37,10 @@ function ListingForm(props){
     const {id} = useParams();
     // const [ autoComplete, setAutoComplete] = useState(props.listings.find(listing => listing.id === parseInt(id, 10).features));
 
+    const [listing, setListing] = useState({})
+
     const { register, handleSubmit, errors, watch } = useForm({defaultValues: {
-        ...props.listings.find((listing) => listing.id === parseInt(id, 10))
+        ...props.listings.find((listing) => listing.id === id*1 )
     }});
 
     const onSubmit = (data, e) => {
@@ -46,6 +48,10 @@ function ListingForm(props){
         props.edit ? props.editListing(data) : props.addListing(data)
         e.target.reset();
     }
+
+    useEffect(() => {
+        setListing({...props.listings.find((listing) => listing.id === id*1)}   )
+    }, [props.listings])
     
     return(
         <ResponsiveContainer>

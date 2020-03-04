@@ -1,6 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import { CardTitle, CardText, Card, CardDetails } from '../PresentationalComponents';
+import { CardTitle, CardText, Card, CardDetails, CardSubtitle } from '../PresentationalComponents';
 
 /*
     Listing Card
@@ -24,8 +24,10 @@ function ListingCard(props){
     return(
         <Card>
             <CardTitle>{props.listing.title}</CardTitle>
-            <CardText>Bedrooms: {props.listing.bedrooms}</CardText>
-            <CardText>Bathrooms: {props.listing.bathrooms}</CardText>
+            <CardText><CardSubtitle>Bedrooms:</CardSubtitle> {props.listing.bedrooms}</CardText>
+            <CardText><CardSubtitle>Bathrooms:</CardSubtitle> {props.listing.bathrooms}</CardText>
+            <CardText><CardSubtitle>Optimal Price:</CardSubtitle> {props.listing.price ? `€${props.listing.price}` : 'Not yet calculated.'}</CardText>
+            
             <CardDetails>
                 {props.preview && <span>Details</span>}
                 {props.preview === false && <span onClick={() => {history.push(`/listings/details/${props.listing.id}`)}} >Details</span>}
