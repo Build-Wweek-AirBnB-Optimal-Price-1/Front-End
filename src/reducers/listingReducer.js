@@ -28,7 +28,7 @@ const initialState = {
         
     },
     {
-        id: 0123,
+        id: 1239,
         title: 'Luxury Ship in River',
         bedrooms: 1,
         bathrooms: 1
