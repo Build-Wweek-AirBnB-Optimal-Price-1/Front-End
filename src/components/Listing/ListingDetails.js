@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
-import { Title, Card, CardTitle, CardText, ResponsiveContainer } from '../PresentationalComponents';
+import { Title, Card, CardTitle, CardText, CardSubtitle, ResponsiveContainer } from '../PresentationalComponents';
 import { deleteListing } from '../../actions/listingActions';
 import { connect } from 'react-redux';
 import theme from '../../theme';
@@ -111,6 +111,7 @@ function ListingDetails(props){
                     <CardTitle>{listing.title}</CardTitle>
                     <CardText>Bedrooms: {listing.bedrooms}</CardText>
                     <CardText>Bathrooms: {listing.bathrooms}</CardText>
+                    <CardText>Optimal Price: {listing.price ? `€${listing.price}` : 'Not yet calculated.'}</CardText>
                     <ButtonContainer>
                         <DetailsButton onClick={() => history.push(`/listings/edit/${listing.id}`)}>Edit Listing</DetailsButton>
                         <DetailsButton delete onClick={handleConfirm}>Delete Listing</DetailsButton>
