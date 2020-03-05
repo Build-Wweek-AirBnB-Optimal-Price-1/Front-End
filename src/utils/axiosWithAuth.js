@@ -9,6 +9,7 @@ export const axiosWithAuth = () => {
             authorization: token
         },
         //This base url will change to our backend api
-        baseURL: 'http://localhost:5000'
+        baseURL: 'https://aoi5.herokuapp.com/api/auth/'
     })
 }
+
