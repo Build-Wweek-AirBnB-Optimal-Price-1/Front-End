@@ -104,14 +104,7 @@ export const listingReducer = (state = initialState, action) => {
         case ADD_LISTING_SUCCESS:
             return {
                 ...state,
-                listings: state.listings.map((listing) => {
-                    if (listing.id === action.payload.id) {
-                        return {
-                            ...action.payload
-                        }
-                    }
-                    else return listing
-                }),
+                listings: [...state.listings, action.payload],
                 isAdding: false,
                 error: null
             };

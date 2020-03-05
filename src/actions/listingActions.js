@@ -47,6 +47,7 @@ export const addListing = (newListing) => dispatch => {
         .get(formatQuery(newListing))
         .then((dataRes) => {
             console.log(dataRes)
+            dispatch({ type: ADD_LISTING_SUCCESS, payload: {...newListing, price: dataRes.data[0].toFixed(2)} })
             // axiosWithAuth()
             //     .post('/listings', {
             //         ...newListing,
@@ -61,8 +62,7 @@ export const addListing = (newListing) => dispatch => {
             //     })
         })
         .catch(err => {
-            // dispatch({ type: SET_ERROR, payload: err.data.message })
-            console.log(err)
+            dispatch({ type: ADD_LISTING_ERROR, payload: err.data.message })
         });
 
 
@@ -76,7 +76,7 @@ export const editListing = (editedListing) => dispatch => {
     axiosData()
         .get(formatQuery(editedListing))
         .then((dataRes) => {
-            console.log(dataRes)
+                    dispatch({ type: EDIT_LISTING_SUCCESS, payload: {...editedListing, price: dataRes.data[0].toFixed(2)} })
             //  axiosWithAuth()
             //     .put(`/listings/${editedListing.id}`, {
             //         ...editedListing,
@@ -90,8 +90,7 @@ export const editListing = (editedListing) => dispatch => {
             //     })
         })
         .catch(err => {
-            console.log(err)
-            // dispatch({ type: EDIT_LISTING_ERROR, payload: err.data.message })
+            dispatch({ type: EDIT_LISTING_ERROR, payload: err.data.message })
         });
 
 
