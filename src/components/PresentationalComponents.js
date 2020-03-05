@@ -118,6 +118,11 @@ export const Input = styled.input`
     cursor: ${props => props.submit ? 'pointer' : 'text'};
 `;
 
+export const Checkbox = styled.input`
+    margin: 20px 0;
+    cursor: pointer;
+`;
+
 export const Label = styled.label`
     font-size: 1.5rem;
     text-align: center;
