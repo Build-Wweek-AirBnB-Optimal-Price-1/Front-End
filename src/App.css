@@ -38,13 +38,3 @@ header img{
         margin: 0 7px;
     }
 }
-
-/* Styles for submit button */
-.submit-button{
-    background-color: #FC642D;
-    color: white;
-}
-
-.submit-button:hover{
-    cursor: pointer;
-}

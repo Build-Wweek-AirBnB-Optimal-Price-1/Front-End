@@ -1,59 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
-import { Title, Card, CardTitle, CardText, CardSubtitle, ResponsiveContainer } from '../PresentationalComponents';
+import { Title, Card, CardTitle, CardText, ResponsiveContainer } from '../PresentationalComponents';
+import { ButtonContainer, DetailsButton, ConfirmDelete, ConfirmButton, Text} from '../PresentationalComponents';
 import { deleteListing } from '../../actions/listingActions';
 import { connect } from 'react-redux';
-import theme from '../../theme';
-import styled from 'styled-components';
-
-const ButtonContainer = styled.div`
-    display: flex;
-    justify-content: center;
-    margin-top: 30px;
-`;
-
-const DetailsButton = styled.div`
-    margin: 10px 20px;
-    font-family: 'Raleway';
-    font-size: ${theme.fontsizes.small}px;
-    color: ${props => props.delete ? theme.colors.red : theme.colors.black};
-    &:hover{
-        cursor: pointer;
-    }
-`;
-
-const ConfirmDelete = styled.div`
-    margin: 20px auto;
-    width: 400px;
-    background-color: ${theme.colors.red};
-    padding: 10px;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-`;
-
-const ConfirmButton = styled.div`
-    font-family: 'Raleway';
-    font-size: 1.53rem;
-    margin-left: 10px;
-    border-radius: 10px;
-    padding: 10px;
-    background-color: white;
-    &:hover{
-        cursor: pointer;
-    }
-`;
-
-const Text = styled.p`
-    text-align: center;
-    font-family: 'Raleway';
-    font-size: 1.3rem;
-    color: white;
-`;
 
 /*
     Listing Details
-    @state: Listing object that represent the respective id
+    @props: 
+        - listings from redux state
+    @params:
+        - An id to represent which listing we want to view
     @return: A page that displays current listing information based off of given id.
                 Two buttons -> Edit Listing and Delete Listing
 */
@@ -68,7 +25,6 @@ function ListingDetails(props){
             ...props.listings.find(listing => listing.id === id*1)
         })
     }, [props.listings]) 
-
 
     // useEffect(() => {
     //     //Dummy data

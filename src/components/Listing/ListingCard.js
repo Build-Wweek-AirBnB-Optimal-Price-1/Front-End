@@ -7,10 +7,9 @@ import { CardTitle, CardText, Card, CardDetails, CardSubtitle } from '../Present
     @props: A listing object to be displayed
             {
                 id: num
-                type: 'string'
-                nights: 'string'
-                location: 'string'
-                features: ['strings']
+                title: 'string'
+                bedrooms: num
+                bathrooms: num
             }
 
             A {preview} boolean values to represent if the card is for preview or not
