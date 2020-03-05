@@ -22,7 +22,7 @@ function SignUp(){
     password.current = watch('password', '');
 
     return(
-        <Form onSubmit={handleSubmit(onSubmit)}>
+        <Form auth onSubmit={handleSubmit(onSubmit)}>
             <Label>Username</Label>
             <Input
                 name='username'
