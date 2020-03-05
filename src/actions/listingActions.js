@@ -44,9 +44,10 @@ export const getListings = () => dispatch => {
 export const addListing = (newListing) => dispatch => {
     dispatch({ type: ADD_LISTING })
     //Uncomment data science call and fix axiosData.js once DS endpoint is done
-    // axiosData()
-        // .post('', newListing)
-        // .then((dataRes) => {
+    axiosData()
+        .get('/json')
+        .then((dataRes) => {
+            console.log(dataRes)
             axiosWithAuth()
                 .post('/listings', {
                     ...newListing,
@@ -59,10 +60,11 @@ export const addListing = (newListing) => dispatch => {
                     dispatch({ type: ADD_LISTING_ERROR, payload: err.data.message })
                     console.log('here');
                 })
-        // })
-        // .catch(err => {
+        })
+        .catch(err => {
             // dispatch({ type: SET_ERROR, payload: err.data.message })
-        // });
+            console.log(err)
+        });
 
 
 }
