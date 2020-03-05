@@ -16,7 +16,7 @@ import { connect } from 'react-redux';
 */
 function ListingDetails(props){
     const {id} = useParams();
-    const [listing, setListing] = useState({})
+    const [ listing, setListing ] = useState({})
     const [ confirmDelete, setConfirmDelete ] = useState(false);
     const history = useHistory();
     
@@ -67,6 +67,15 @@ function ListingDetails(props){
                     <CardTitle>{listing.title}</CardTitle>
                     <CardText>Bedrooms: {listing.bedrooms}</CardText>
                     <CardText>Bathrooms: {listing.bathrooms}</CardText>
+                    <CardText>Accomodates: {listing.accomodates}</CardText>
+                    <CardText>Maximum Nights: {listing.maximum_nights}</CardText>
+                    <CardText>Minimum Nights: {listing.minimum_nights} </CardText>
+                    <CardText>Instant Bookable: {listing.instant_bookable ? 'Yes' : 'No'}</CardText>
+                    <CardText>Amenities: 
+                        {listing.amenities ? listing.amenities.map((amenity, index) => {
+                            return ` ${amenity.label}${index < (listing.amenities.length - 1) ? ',' : ''}`;
+                        }) : 'None'}
+                    </CardText>
                     <CardText>Optimal Price: {listing.price ? `€${listing.price}` : 'Not yet calculated.'}</CardText>
                     <ButtonContainer>
                         <DetailsButton onClick={() => history.push(`/listings/edit/${listing.id}`)}>Edit Listing</DetailsButton>

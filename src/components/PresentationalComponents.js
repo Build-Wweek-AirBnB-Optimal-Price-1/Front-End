@@ -70,6 +70,7 @@ export const Card = styled.div`
 export const CardTitle = styled.h3`
     font-size: 2rem;
     font-family: 'Raleway';
+    text-align: center;
     span{
         font-size: 1.5rem;
     }
@@ -88,6 +89,18 @@ export const CardSubtitle = styled.span`
 `
 
 // ---------- Form Components ---------- //
+export const InputLabelContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 340px;
+    margin: 0 30px;
+    ${theme.breakpoints.tablet}{
+        flex-direction: ${props => props.checkbox ? 'row' : 'column'}
+    }
+`;
+
 export const Form = styled.form`
     width: 340px;
     margin: 0 auto;
@@ -95,13 +108,18 @@ export const Form = styled.form`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    ${theme.breakpoints.tablet}{
+        width: 900px;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
 `;
 
 export const Input = styled.input`
     width: 100%;
     max-width: ${props => props.search ? '180px' : '320px'};
     min-width: ${props => props.search ? '180px' : '280px'};
-    background-color: ${props => props.submit ? theme.colors.red : 'white'};
+    background-color: ${props => props.submit ? (props.disabled ? 'grey' : theme.colors.red) : 'white'};
     color: ${props => props.submit ? 'white' : 'black'};
     height: 40px;
     border: none;
@@ -121,6 +139,10 @@ export const Input = styled.input`
 export const Checkbox = styled.input`
     margin: 20px 0;
     cursor: pointer;
+    text-align: center;
+    ${theme.breakpoints.tablet}{
+        margin-left: 20px;
+    }
 `;
 
 export const Label = styled.label`

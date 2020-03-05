@@ -4,7 +4,10 @@ import {useParams, useHistory} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {addListing, editListing} from '../../actions/listingActions';
 import ListingCard from './ListingCard';
-import {ResponsiveContainer, Form, Input, Label, Error, Checkbox} from '../PresentationalComponents';
+import {ResponsiveContainer, Form, 
+        Input, Label, Error, Checkbox,
+        InputLabelContainer
+        } from '../PresentationalComponents';
 import styled from 'styled-components';
 
 // Material UI Imports
@@ -96,102 +99,117 @@ function ListingForm(props){
             <ListingCard preview={true} listing={{title: watch('title', 'title'), bedrooms: watch('bedrooms', 'bedrooms'), bathrooms: watch('bathrooms', 'bathrooms')}}/>
             <Form onSubmit={handleSubmit(onSubmit)}>
 
-                <Label>Title</Label>
-                <Input
-                    name='title'
-                    ref={register({
-                        required: true,
-                        minLength: 4,
-                        maxLength: 50
-                    })}
-                />
-                {errors.title && errors.title.type === 'required' && <Error margin>Please enter a title</Error>}
-                {errors.title && errors.title.type === 'minLength' && <Error margin>Title must be at least 4 characters long</Error>}
-                {errors.title && errors.title.type === 'maxLength' && <Error margin>Keep the title under 40 characters</Error>}
+                <InputLabelContainer>
+                    <Label>Title</Label>
+                    <Input
+                        name='title'
+                        ref={register({
+                            required: true,
+                            minLength: 4,
+                            maxLength: 50
+                        })}
+                    />
+                    {errors.title && errors.title.type === 'required' && <Error margin>Please enter a title</Error>}
+                    {errors.title && errors.title.type === 'minLength' && <Error margin>Title must be at least 4 characters long</Error>}
+                    {errors.title && errors.title.type === 'maxLength' && <Error margin>Keep the title under 40 characters</Error>}
+                </InputLabelContainer>
 
-                <Label>Bedrooms</Label>
-                <Input
-                    name='bedrooms'
-                    ref={register({
-                        required: true,
-                        pattern: {
-                            value: /^[0-9]*$/gm
-                        },
-                        maxLength: 2
-                    })}
-                />
-                {errors.bedrooms && errors.bedrooms.type === 'required' && <Error margin>Please enter number of bedrooms</Error>}
-                {errors.bedrooms && errors.bedrooms.type === 'pattern' && <Error margin>Number of bedrooms must be a number</Error>}
-                {errors.bedrooms && errors.bedrooms.type === 'maxLength' && <Error margin>Number of bedrooms must be less than 100</Error>}
+                <InputLabelContainer>
+                    <Label>Bedrooms</Label>
+                    <Input
+                        name='bedrooms'
+                        ref={register({
+                            required: true,
+                            pattern: {
+                                value: /^[0-9]*$/gm
+                            },
+                            maxLength: 2
+                        })}
+                    />
+                    {errors.bedrooms && errors.bedrooms.type === 'required' && <Error margin>Please enter number of bedrooms</Error>}
+                    {errors.bedrooms && errors.bedrooms.type === 'pattern' && <Error margin>Number of bedrooms must be a number</Error>}
+                    {errors.bedrooms && errors.bedrooms.type === 'maxLength' && <Error margin>Number of bedrooms must be less than 100</Error>}
+                </InputLabelContainer>
 
-                <Label>Bathrooms</Label>
-                <Input
-                    name='bathrooms'
-                    ref={register({
-                        required: true,
-                        pattern: {
-                            value: /^[0-9]*$/gm
-                        },
-                        maxLength: 2
-                    })}
-                />
-                {errors.bathrooms && errors.bathrooms.type === 'required' && <Error margin>Please enter number of bathrooms</Error>}
-                {errors.bathrooms && errors.bathrooms.type === 'pattern' && <Error margin>Number of bathrooms must be a number</Error>}
-                {errors.bathrooms && errors.bathrooms.type === 'maxLength' && <Error margin>Number of bathrooms must be less than 100</Error>}
+                <InputLabelContainer>
+                    <Label>Bathrooms</Label>
+                    <Input
+                        name='bathrooms'
+                        ref={register({
+                            required: true,
+                            pattern: {
+                                value: /^[0-9]*$/gm
+                            },
+                            maxLength: 2
+                        })}
+                    />
+                    {errors.bathrooms && errors.bathrooms.type === 'required' && <Error margin>Please enter number of bathrooms</Error>}
+                    {errors.bathrooms && errors.bathrooms.type === 'pattern' && <Error margin>Number of bathrooms must be a number</Error>}
+                    {errors.bathrooms && errors.bathrooms.type === 'maxLength' && <Error margin>Number of bathrooms must be less than 100</Error>}
+                </InputLabelContainer>
 
-                <Label>Accommodates</Label>
-                <Input
-                    name='accomodates'
-                    ref={register({
-                        required: true,
-                        pattern: {
-                            value: /^[0-9]*$/gm
-                        },
-                        maxLength: 2
-                    })}
-                />
-                {errors.accomodates && errors.accomodates.type === 'required' && <Error margin>Please enter how many people can be accomodated</Error>}
-                {errors.accomodates && errors.accomodates.type === 'pattern' && <Error margin>Accomodation count must be a number</Error>}
-                {errors.accomodates && errors.accomodates.type === 'maxLength' && <Error margin>Number of people that can be accomodated must be less than 100</Error>}
+                <InputLabelContainer>
+                    <Label>Accommodates</Label>
+                    <Input
+                        name='accomodates'
+                        ref={register({
+                            required: true,
+                            pattern: {
+                                value: /^[0-9]*$/gm
+                            },
+                            maxLength: 2
+                        })}
+                    />
+                    {errors.accomodates && errors.accomodates.type === 'required' && <Error margin>Please enter how many people can be accomodated</Error>}
+                    {errors.accomodates && errors.accomodates.type === 'pattern' && <Error margin>Accomodation count must be a number</Error>}
+                    {errors.accomodates && errors.accomodates.type === 'maxLength' && <Error margin>Number of people that can be accomodated must be less than 100</Error>}
+                </InputLabelContainer>
 
-                <Label>Maximum Nights</Label>
-                <Input
-                    name='maximum_nights'
-                    ref={register({
-                        required: true,
-                        pattern: {
-                            value: /^[0-9]*$/gm
-                        },
-                        maxLength: 2
-                    })}
-                />
-                {errors.maximum_nights && errors.maximum_nights.type === 'required' && <Error margin>Please enter maximum nights for stay</Error>}
-                {errors.maximum_nights && errors.maximum_nights.type === 'pattern' && <Error margin>Maximum nights must be a number</Error>}
-                {errors.maximum_nights && errors.maximum_nights.type === 'maxLength' && <Error margin>Maximum nights must be less than 100</Error>}
+                <InputLabelContainer>
+                    <Label>Maximum Nights</Label>
+                    <Input
+                        name='maximum_nights'
+                        ref={register({
+                            required: true,
+                            pattern: {
+                                value: /^[0-9]*$/gm
+                            },
+                            maxLength: 2
+                        })}
+                    />
+                    {errors.maximum_nights && errors.maximum_nights.type === 'required' && <Error margin>Please enter maximum nights for stay</Error>}
+                    {errors.maximum_nights && errors.maximum_nights.type === 'pattern' && <Error margin>Maximum nights must be a number</Error>}
+                    {errors.maximum_nights && errors.maximum_nights.type === 'maxLength' && <Error margin>Maximum nights must be less than 100</Error>}
+                </InputLabelContainer>
 
-                <Label>Minimum Nights</Label>
-                <Input
-                    name='minimum_nights'
-                    ref={register({
-                        required: true,
-                        pattern: {
-                            value: /^[0-9]*$/gm
-                        },
-                        maxLength: 2
-                    })}
-                />
-                {errors.minimum_nights && errors.minimum_nights.type === 'required' && <Error margin>Please enter minimum nights for stay</Error>}
-                {errors.minimum_nights && errors.minimum_nights.type === 'pattern' && <Error margin>Minimum nights must be a number</Error>}
-                {errors.minimum_nights && errors.minimum_nights.type === 'maxLength' && <Error margin>Minimum nights must be less than 100</Error>}
+                <InputLabelContainer>
+                    <Label>Minimum Nights</Label>
+                    <Input
+                        name='minimum_nights'
+                        ref={register({
+                            required: true,
+                            pattern: {
+                                value: /^[0-9]*$/gm
+                            },
+                            maxLength: 2
+                        })}
+                    />
+                    {errors.minimum_nights && errors.minimum_nights.type === 'required' && <Error margin>Please enter minimum nights for stay</Error>}
+                    {errors.minimum_nights && errors.minimum_nights.type === 'pattern' && <Error margin>Minimum nights must be a number</Error>}
+                    {errors.minimum_nights && errors.minimum_nights.type === 'maxLength' && <Error margin>Minimum nights must be less than 100</Error>}
+                </InputLabelContainer>
 
-                <Label>Instant Bookable</Label>
-                <Checkbox
-                    checkbox
-                    name='instant_bookable'
-                    type='checkbox'
-                    ref={register}
-                />
+                <InputLabelContainer checkbox>
+                    <Label>Instant Bookable</Label>
+                    <Checkbox
+                        checkbox
+                        name='instant_bookable'
+                        type='checkbox'
+                        ref={register}
+                    />
+                </InputLabelContainer>
 
+                <InputLabelContainer>
                 {/* Need to remove duplicates and fix error if there are no inputs */}
                 <Label>Amenities</Label>
                 <Autocomplete
@@ -208,6 +226,7 @@ function ListingForm(props){
                     />
                     )}
                 />
+                </InputLabelContainer>
 
                 <ButtonContainer>
                     <Input type='submit' disabled={props.isFetching} submit value={props.edit ? (props.isFetching? 'Submitting...' : 'Edit Listing') : (props.isFetching ? 'Submitting...' : 'Add Listing')}/>
