@@ -55,7 +55,7 @@ function SignUp(){
                 placeholder='password'
             />
             {errors.passwordMatch && errors.passwordMatch.type === 'validate' && <Error>Passwords don't match</Error>}
-            <Input type='submit' className='submit-button' value='Create Account'/>
+            <Input type='submit' submit value='Create Account'/>
         </Form>
     );
 }

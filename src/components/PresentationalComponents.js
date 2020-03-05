@@ -9,7 +9,7 @@ export const ResponsiveContainer = styled.main`
     margin: 0 15px;
     margin-top: 60px;
     ${theme.breakpoints.tablet} {
-        margin: 0 30px
+        margin: 0 30px;
         margin-top: 60px;
     }
 `
@@ -89,7 +89,7 @@ export const CardSubtitle = styled.span`
 
 // ---------- Form Components ---------- //
 export const Form = styled.form`
-    width: 50%;
+    width: 340px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -97,11 +97,12 @@ export const Form = styled.form`
     align-items: center;
 `;
 
-// 300 / 280
 export const Input = styled.input`
-    width: 50%;
-    max-width: ${props => props.search ? '180px' : '300px'};
+    width: 100%;
+    max-width: ${props => props.search ? '180px' : '320px'};
     min-width: ${props => props.search ? '180px' : '280px'};
+    background-color: ${props => props.submit ? theme.colors.red : 'white'};
+    color: ${props => props.submit ? 'white' : 'black'};
     height: 40px;
     border: none;
     outline: none;
@@ -110,10 +111,11 @@ export const Input = styled.input`
     -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
     box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
     -webkit-appearance: none;
-    margin: 20px 0px;
+    margin: 20px 0;
     padding: 0 10px;
     font-size: 1.2rem;
     font-family: 'Raleway';
+    cursor: ${props => props.submit ? 'pointer' : 'text'};
 `;
 
 export const Label = styled.label`
@@ -255,5 +257,51 @@ export const ListItem = styled.li`
     list-style: circle inside;
     font-size: 1.3rem;
     font-family: 'Raleway'; 
+    color: white;
+`;
+
+// ---------- Details Components ---------- //
+export const ButtonContainer = styled.div`
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+`;
+
+export const DetailsButton = styled.div`
+    margin: 10px 20px;
+    font-family: 'Raleway';
+    font-size: ${theme.fontsizes.small}px;
+    color: ${props => props.delete ? theme.colors.red : theme.colors.black};
+    &:hover{
+        cursor: pointer;
+    }
+`;
+
+export const ConfirmDelete = styled.div`
+    margin: 20px auto;
+    width: 400px;
+    background-color: ${theme.colors.red};
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+`;
+
+export const ConfirmButton = styled.div`
+    font-family: 'Raleway';
+    font-size: 1.53rem;
+    margin-left: 10px;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: white;
+    &:hover{
+        cursor: pointer;
+    }
+`;
+
+export const Text = styled.p`
+    text-align: center;
+    font-family: 'Raleway';
+    font-size: 1.3rem;
     color: white;
 `;

@@ -30,7 +30,7 @@ function Login(){
                 placeholder='password'
             />
             {errors.password && <Error>Password Required</Error>}
-            <Input type='submit' className='submit-button' value='Login'/>
+            <Input type='submit' submit value='Login'/>
         </Form>
     );
 }
