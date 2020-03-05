@@ -109,8 +109,8 @@ export const Form = styled.form`
     justify-content: center;
     align-items: center;
     ${theme.breakpoints.tablet}{
-        width: 900px;
-        flex-direction: row;
+        width: ${props => props.auth ? '340px' : '900px'};
+        flex-direction: ${props => props.auth ? 'column' : 'row'};
         flex-wrap: wrap;
     }
 `;
@@ -164,9 +164,13 @@ export const ControlBar = styled.div`
     display: flex;
     max-width: 900px;
     justify-content: space-between;
+    flex-direction: column;
     margin: 10px auto;
     border-bottom: 1px solid black;
     padding-bottom: 10px;
+    ${theme.breakpoints.tablet}{
+        flex-direction: row;
+    }
 `;
 
 export const ControlBarText = styled.p`
@@ -183,9 +187,12 @@ export const ControlBarText = styled.p`
 `;
 
 export const ControlBarItem = styled.div`
+    margin: 0 auto;
     display: flex;
     align-items: center;
-   
+    ${theme.breakpoints.tablet}{
+        margin: 0;
+    }
 `;
 
 export const PlusButton = styled.button`
@@ -306,12 +313,15 @@ export const DetailsButton = styled.div`
 
 export const ConfirmDelete = styled.div`
     margin: 20px auto;
-    width: 400px;
+    width: 300px;
     background-color: ${theme.colors.red};
     padding: 10px;
     border-radius: 10px;
     display: flex;
     align-items: center;
+    ${theme.breakpoints.tablet}{
+        width: 400px;
+    }
 `;
 
 export const ConfirmButton = styled.div`

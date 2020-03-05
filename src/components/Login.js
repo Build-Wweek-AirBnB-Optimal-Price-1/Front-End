@@ -14,7 +14,7 @@ function Login(){
     }
 
     return(
-        <Form onSubmit={handleSubmit(onSubmit)}>
+        <Form auth onSubmit={handleSubmit(onSubmit)}>
             <Label>Username</Label>
             <Input
                 name='username'
