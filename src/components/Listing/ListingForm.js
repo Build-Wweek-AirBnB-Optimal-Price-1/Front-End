@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { useForm } from 'react-hook-form';
-import {useParams} from 'react-router-dom';
+import {useParams, useHistory} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {addListing, editListing} from '../../actions/listingActions';
 import ListingCard from './ListingCard';
@@ -43,6 +43,7 @@ const useStyles = makeStyles(theme => ({
     @return: Returns a form that accepts input for adding or editing a listing
 */
 function ListingForm(props){
+    const history = useHistory();
     const classes = useStyles();
 
     const {id} = useParams();
@@ -81,9 +82,8 @@ function ListingForm(props){
         }
 
         const listing = {...data, amenities: autoComplete ? [...autoComplete] : [], price: null};
-        console.log(listing);
 
-        props.edit ? props.editListing(listing) : props.addListing(listing)
+        props.edit ? props.editListing(listing, history) : props.addListing(listing, history)
         e.target.reset();
     }
 
@@ -210,7 +210,7 @@ function ListingForm(props){
                 />
 
                 <ButtonContainer>
-                    <Input type='submit' submit value={`${props.edit ? 'Edit Listing' : 'Add Listing'}`}/>
+                    <Input type='submit' disabled={props.isFetching} submit value={props.edit ? (props.isFetching? 'Submitting...' : 'Edit Listing') : (props.isFetching ? 'Submitting...' : 'Add Listing')}/>
                 </ButtonContainer>
             </Form>
         </ResponsiveContainer>
@@ -220,6 +220,7 @@ function ListingForm(props){
 const mapStateToProps = (state) => {
     return {
         listings: state.listings,
+        isFetching: state.isFetching,
         error: state.error
     };
 }

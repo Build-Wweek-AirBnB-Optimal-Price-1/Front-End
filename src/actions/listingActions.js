@@ -41,13 +41,14 @@ export const getListings = () => dispatch => {
     //     })
 }
 
-export const addListing = (newListing) => dispatch => {
+export const addListing = (newListing, history) => dispatch => {
     dispatch({ type: ADD_LISTING })
     axiosData()
         .get(formatQuery(newListing))
         .then((dataRes) => {
             console.log(dataRes)
             dispatch({ type: ADD_LISTING_SUCCESS, payload: {...newListing, price: dataRes.data[0].toFixed(2)} })
+            history.push(`/listings`)
             // axiosWithAuth()
             //     .post('/listings', {
             //         ...newListing,
@@ -55,6 +56,8 @@ export const addListing = (newListing) => dispatch => {
             //     })
             //     .then(backendRes => {
             //         dispatch({ type: ADD_LISTING_SUCCESS, payload: backendRes.data })
+                        //Make sure history pushes to id of new listing
+                        //history.push(`/listings/details/${backendRes.data.id}`)
             //     })
             //     .catch(err => {
             //         dispatch({ type: ADD_LISTING_ERROR, payload: err.data.message })
@@ -68,7 +71,7 @@ export const addListing = (newListing) => dispatch => {
 
 }
 
-export const editListing = (editedListing) => dispatch => {
+export const editListing = (editedListing, history) => dispatch => {
 
     dispatch({ type: EDIT_LISTING })
 
@@ -77,6 +80,7 @@ export const editListing = (editedListing) => dispatch => {
         .get(formatQuery(editedListing))
         .then((dataRes) => {
                     dispatch({ type: EDIT_LISTING_SUCCESS, payload: {...editedListing, price: dataRes.data[0].toFixed(2)} })
+                    history.push(`/listings`)
             //  axiosWithAuth()
             //     .put(`/listings/${editedListing.id}`, {
             //         ...editedListing,
@@ -84,6 +88,8 @@ export const editListing = (editedListing) => dispatch => {
             //     })
             //     .then(backendRes => {
             //         dispatch({ type: EDIT_LISTING_SUCCESS, payload: backendRes.data })
+                        //Make sure history pushes to id of Edited listing
+                        //history.push(`/listings/details/${backendRes.data.id}`)
             //     })
             //     .catch(err => {
             //         dispatch({ type: EDIT_LISTING_ERROR, payload: err.data.message })
