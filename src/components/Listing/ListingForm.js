@@ -83,7 +83,7 @@ function ListingForm(props){
         const listing = {...data, amenities: autoComplete ? [...autoComplete] : [], price: null};
         console.log(listing);
 
-        props.edit ? props.editListing(data) : props.addListing(data)
+        props.edit ? props.editListing(listing) : props.addListing(listing)
         e.target.reset();
     }
 

@@ -1,7 +1,7 @@
 
 
 import { axiosWithAuth } from '../utils/axiosWithAuth'
-import { axiosData } from '../utils/axiosData';
+import { axiosData, formatQuery } from '../utils/axiosData';
 
 export const FETCH_LISTINGS = "FETCH_LISTINGS";
 export const FETCH_LISTINGS_SUCCESS = "FETCH_LISTINGS_SUCCESS";
@@ -28,41 +28,42 @@ export const DELETE_LISTING_ERROR = "DELETE_LISTING_ERROR";
 
 export const getListings = () => dispatch => {
     dispatch({ type: FETCH_LISTINGS })
-    axiosWithAuth()
-        //Write in correct endpoint here
-        .get('/listings')
-        .then(res => {
-            //Write in correct data property here
-            dispatch({ type: FETCH_LISTINGS_SUCCESS, payload: res.data })
-        })
-        .catch(err => {
-            //Write in correct error property here
-            dispatch({ type: FETCH_LISTINGS_ERROR, payload: err.data.message })
-        })
+    // axiosWithAuth()
+    //     //Write in correct endpoint here
+    //     .get('/listings')
+    //     .then(res => {
+    //         //Write in correct data property here
+    //         dispatch({ type: FETCH_LISTINGS_SUCCESS, payload: res.data })
+    //     })
+    //     .catch(err => {
+    //         //Write in correct error property here
+    //         dispatch({ type: FETCH_LISTINGS_ERROR, payload: err.data.message })
+    //     })
 }
 
 export const addListing = (newListing) => dispatch => {
     dispatch({ type: ADD_LISTING })
-    //Uncomment data science call and fix axiosData.js once DS endpoint is done
-    // axiosData()
-        // .post('', newListing)
-        // .then((dataRes) => {
-            axiosWithAuth()
-                .post('/listings', {
-                    ...newListing,
-                    // price: dataRes
-                })
-                .then(backendRes => {
-                    dispatch({ type: ADD_LISTING_SUCCESS, payload: backendRes.data })
-                })
-                .catch(err => {
-                    dispatch({ type: ADD_LISTING_ERROR, payload: err.data.message })
-                    console.log('here');
-                })
-        // })
-        // .catch(err => {
-            // dispatch({ type: SET_ERROR, payload: err.data.message })
-        // });
+    axiosData()
+        .get(formatQuery(newListing))
+        .then((dataRes) => {
+            console.log(dataRes)
+            dispatch({ type: ADD_LISTING_SUCCESS, payload: {...newListing, price: dataRes.data[0].toFixed(2)} })
+            // axiosWithAuth()
+            //     .post('/listings', {
+            //         ...newListing,
+            //         // price: dataRes
+            //     })
+            //     .then(backendRes => {
+            //         dispatch({ type: ADD_LISTING_SUCCESS, payload: backendRes.data })
+            //     })
+            //     .catch(err => {
+            //         dispatch({ type: ADD_LISTING_ERROR, payload: err.data.message })
+            //         console.log('here');
+            //     })
+        })
+        .catch(err => {
+            dispatch({ type: ADD_LISTING_ERROR, payload: err.data.message })
+        });
 
 
 }
@@ -71,25 +72,26 @@ export const editListing = (editedListing) => dispatch => {
 
     dispatch({ type: EDIT_LISTING })
 
-    //Uncomment data science call and fix axiosData.js once DS endpoint is done
-    // axiosData()
-        // .post('', editedListing)
-        // .then((dataRes) => {
-             axiosWithAuth()
-                .put(`/listings/${editedListing.id}`, {
-                    ...editedListing,
-                    // price: dataRes
-                })
-                .then(backendRes => {
-                    dispatch({ type: EDIT_LISTING_SUCCESS, payload: backendRes.data })
-                })
-                .catch(err => {
-                    dispatch({ type: EDIT_LISTING_ERROR, payload: err.data.message })
-                })
-        // })
-        // .catch(err => {
-            // dispatch({ type: EDIT_LISTING_ERROR, payload: err.data.message })
-        // });
+
+    axiosData()
+        .get(formatQuery(editedListing))
+        .then((dataRes) => {
+                    dispatch({ type: EDIT_LISTING_SUCCESS, payload: {...editedListing, price: dataRes.data[0].toFixed(2)} })
+            //  axiosWithAuth()
+            //     .put(`/listings/${editedListing.id}`, {
+            //         ...editedListing,
+            //         // price: dataRes
+            //     })
+            //     .then(backendRes => {
+            //         dispatch({ type: EDIT_LISTING_SUCCESS, payload: backendRes.data })
+            //     })
+            //     .catch(err => {
+            //         dispatch({ type: EDIT_LISTING_ERROR, payload: err.data.message })
+            //     })
+        })
+        .catch(err => {
+            dispatch({ type: EDIT_LISTING_ERROR, payload: err.data.message })
+        });
 
 
 }
