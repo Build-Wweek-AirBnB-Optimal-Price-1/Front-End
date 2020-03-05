@@ -26,6 +26,7 @@ function Header(){
                 <Navigation>
                     {/* Temporary link for development */}
                     <Link to='/listings'>Listings</Link>
+                    
                     <a href={'https://build-wweek-airbnb-optimal-price-1.github.io/Marketing-Page/about-us.html'}>
                         About
                     </a>
