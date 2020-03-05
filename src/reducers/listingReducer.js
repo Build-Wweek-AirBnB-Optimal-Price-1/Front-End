@@ -16,7 +16,7 @@ import {
 const initialState = {
     listings: [
         {
-            id: '1244',
+            id: 1244,
             title: 'Berlin Downtown Apartment',
             bedrooms: 2,
             bathrooms: 3,
@@ -68,9 +68,6 @@ const initialState = {
 
     ],
     isFetching: false,
-    isAdding: false,
-    isEditing: false,
-    isDeleting: false,
     error: null
 };
 
@@ -98,26 +95,26 @@ export const listingReducer = (state = initialState, action) => {
         case ADD_LISTING:
             return {
                 ...state,
-                isAdding: true,
+                isFetching: true,
                 error: null
             };
         case ADD_LISTING_SUCCESS:
             return {
                 ...state,
                 listings: [...state.listings, action.payload],
-                isAdding: false,
+                isFetching: false,
                 error: null
             };
         case ADD_LISTING_ERROR:
             return {
                 ...state,
-                isAdding: false,
+                isFetching: false,
                 error: action.payload
             };
         case EDIT_LISTING:
             return {
                 ...state,
-                isEditing: true,
+                isFetching: true,
                 error: null
             };
         case EDIT_LISTING_SUCCESS:
@@ -131,31 +128,31 @@ export const listingReducer = (state = initialState, action) => {
                     }
                     else return listing
                 }),
-                isEditing: false,
+                isFetching: false,
                 error: null
             };
         case EDIT_LISTING_ERROR:
             return {
                 ...state,
-                isEditing: false,
+                isFetching: false,
                 error: action.payload
             };
         case DELETE_LISTING:
             return {
                 ...state,
-                isDeleting: true,
+                isFetching: true,
                 error: null
             };
         case DELETE_LISTING_SUCCESS:
             return {
                 ...state,
                 listings: state.listings.filter(listing => listing.id !== action.payload),
-                isDeleting: false
+                isFetching: false
             };
         case DELETE_LISTING_ERROR:
             return {
                 ...state,
-                isDeleting: false,
+                isFetching: false,
                 error: action.payload
             }
         default:
