@@ -47,7 +47,7 @@ function ListingForm(props){
     const classes = useStyles();
 
     const {id} = useParams();
-    const [ autoComplete, setAutoComplete ] = useState(props.listings.find(listing => listing.id === (id*1)).amenities );
+    const [ autoComplete, setAutoComplete ] = useState( props.listings.find(listing => listing.id === (id*1)) ? props.listings.find(listing => listing.id === (id*1)).amenities : [] );
 
     const selectOptions = [
                             {label: 'High End Electronics', value:'high_end_electronics'}, 
