@@ -16,7 +16,7 @@ import {
 const initialState = {
     listings: [
         {
-            id: '1244',
+            id: 1244,
             title: 'Berlin Downtown Apartment',
             bedrooms: 2,
             bathrooms: 3,
