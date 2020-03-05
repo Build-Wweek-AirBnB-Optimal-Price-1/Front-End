@@ -1,20 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { loginAction } from '../actions/authActions';
+import {useHistory} from 'react-router-dom';
 import { Form, Input, Label, Error } from './PresentationalComponents';
 
 function Login(){
+    const history = useHistory();
     const { register, handleSubmit, errors } = useForm();
     const [ error, setError ] = useState('');
 
     // Submit data to back-end and reset form
     const onSubmit = (data, e) => {
-        loginAction(data, setError);
+        e.preventDefault()
+        loginAction(data, setError, history);
         e.target.reset();
     }
 
+    useEffect(() => {
+        window.localStorage.getItem('token') && history.push('/listings')
+    }, [])
+
     return(
-        <Form auth onSubmit={handleSubmit(onSubmit)}>
+        <Form auth noValidate onSubmit={handleSubmit(onSubmit)}>
             <Label>Username</Label>
             <Input
                 name='username'

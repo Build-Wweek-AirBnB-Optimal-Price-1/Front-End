@@ -1,19 +1,22 @@
 import React, { useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import {useHistory} from 'react-router-dom';
 import { registerAction } from '../actions/authActions';
 import { Form, Input, Label, Error } from './PresentationalComponents';
 
 function SignUp(){
+    const history = useHistory()
     const { register, handleSubmit, errors, watch } = useForm();
     const [ error, setError ] = useState('');
 
     // Submit data to back-end and reset form
     const onSubmit = (data, e) => {
         data = {
-            username: data[0],
-            password: data[1]
+            username: data.username,
+            password: data.password
         };
-        registerAction(data, setError);
+        console.log("credentials", data)
+        registerAction(data, setError, history);
         e.target.reset();
     }
 

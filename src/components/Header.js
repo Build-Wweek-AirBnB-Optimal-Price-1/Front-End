@@ -1,11 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { logoutAction } from '../actions/authActions';
 import Logo from '../assets/logo.png';
 import {HeaderStruct, HeaderLogo, Navigation, LinkContainer} from './PresentationalComponents';
 
 // Displays public header to un-registered/un-authenticated users
 function Header(){
+    const history = useHistory();
     const token = window.localStorage.getItem('token');
     if(token){
         return(
@@ -13,7 +14,7 @@ function Header(){
                 <HeaderLogo src={Logo} alt='Optimal BNB' />
                 <Navigation>
                     <Link to='/listings'>Listings</Link>
-                    <Link onClick={logoutAction}><LinkContainer>Log Out</LinkContainer></Link>
+                    <Link onClick={() => logoutAction(history)}><LinkContainer>Log Out</LinkContainer></Link>
                 </Navigation>
             </HeaderStruct>  
         );
