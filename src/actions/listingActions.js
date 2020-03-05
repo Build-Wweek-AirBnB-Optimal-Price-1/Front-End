@@ -72,10 +72,11 @@ export const editListing = (editedListing) => dispatch => {
 
     dispatch({ type: EDIT_LISTING })
 
-    //Uncomment data science call and fix axiosData.js once DS endpoint is done
-    // axiosData()
-        // .post('', editedListing)
-        // .then((dataRes) => {
+
+    axiosData()
+        .get(formatQuery(editedListing))
+        .then((dataRes) => {
+            console.log(dataRes)
             //  axiosWithAuth()
             //     .put(`/listings/${editedListing.id}`, {
             //         ...editedListing,
@@ -87,10 +88,11 @@ export const editListing = (editedListing) => dispatch => {
             //     .catch(err => {
             //         dispatch({ type: EDIT_LISTING_ERROR, payload: err.data.message })
             //     })
-        // })
-        // .catch(err => {
+        })
+        .catch(err => {
+            console.log(err)
             // dispatch({ type: EDIT_LISTING_ERROR, payload: err.data.message })
-        // });
+        });
 
 
 }
