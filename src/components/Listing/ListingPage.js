@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {connect} from 'react-redux';
+import {getListings} from '../../actions/listingActions';
 import {useHistory} from 'react-router-dom'
 import { ResponsiveContainer, Title, CardContainer, 
         ControlBar, ControlBarText, ControlBarItem, 
@@ -36,6 +37,11 @@ function ListingPage(props){
         Renders when component mounts
         Re-renders whenever there is a change to isFetching from props
     */
+
+    useEffect(() => {
+        props.getListings()
+    }, [])
+
     if(props.isFetching){
         return(
             <p>Grabbing Data</p>
@@ -74,4 +80,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(ListingPage);
+export default connect(mapStateToProps, {getListings})(ListingPage);

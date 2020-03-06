@@ -28,17 +28,19 @@ export const DELETE_LISTING_ERROR = "DELETE_LISTING_ERROR";
 
 export const getListings = () => dispatch => {
     dispatch({ type: FETCH_LISTINGS })
-    // axiosWithAuth()
-    //     //Write in correct endpoint here
-    //     .get('/listings')
-    //     .then(res => {
-    //         //Write in correct data property here
-    //         dispatch({ type: FETCH_LISTINGS_SUCCESS, payload: res.data })
-    //     })
-    //     .catch(err => {
-    //         //Write in correct error property here
-    //         dispatch({ type: FETCH_LISTINGS_ERROR, payload: err.data.message })
-    //     })
+    axiosWithAuth()
+        //Write in correct endpoint here
+        .get('/listing')
+        .then(res => {
+            console.log(res)
+            //Write in correct data property here
+            dispatch({ type: FETCH_LISTINGS_SUCCESS, payload: res.data })
+        })
+        .catch(err => {
+            //Write in correct error property here
+            console.log(err)
+            dispatch({ type: FETCH_LISTINGS_ERROR, payload: err })
+        })
 }
 
 export const addListing = (newListing, history) => dispatch => {
@@ -48,7 +50,7 @@ export const addListing = (newListing, history) => dispatch => {
         .then((dataRes) => {
             console.log(dataRes)
             dispatch({ type: ADD_LISTING_SUCCESS, payload: {...newListing, price: dataRes.data[0].toFixed(2)} })
-            history.push(`/listings`)
+            history.push(`/listing`)
             // axiosWithAuth()
             //     .post('/listings', {
             //         ...newListing,
