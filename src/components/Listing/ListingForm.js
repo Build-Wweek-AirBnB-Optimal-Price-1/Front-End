@@ -84,7 +84,7 @@ function ListingForm(props){
             data.instant_bookable = 0;
         }
 
-        const listing = {...data, amenities: autoComplete ? [...autoComplete] : [], price: null, id: id*1};
+        const listing = id ? {...data, amenities: autoComplete ? [...autoComplete] : [], price: null, id: id*1} : {...data, amenities: autoComplete ? [...autoComplete] : [], price: null};
 
         props.edit ? props.editListing(listing, history) : props.addListing(listing, history)
         e.target.reset();
