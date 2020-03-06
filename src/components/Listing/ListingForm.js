@@ -68,7 +68,7 @@ function ListingForm(props){
 
     // Importing properties from useForm and setting defaultValues
     const { register, handleSubmit, errors, watch } = useForm({defaultValues: {
-        ...props.listings.find((listing) => listing.id === id*1 )
+        ...props.listings.find((listing) => listing.id === id )
     }});
 
     // Handles re-formatting of data and passing to respective actions on submission of form
@@ -84,14 +84,14 @@ function ListingForm(props){
             data.instant_bookable = 0;
         }
 
-        const listing = id ? {...data, amenities: autoComplete ? [...autoComplete] : [], price: null, id: id*1} : {...data, amenities: autoComplete ? [...autoComplete] : [], price: null};
+        const listing = id ? {...data, amenities: autoComplete ? [...autoComplete] : [], id: id} : {...data, amenities: autoComplete ? [...autoComplete] : [], price: null};
 
         props.edit ? props.editListing(listing, history) : props.addListing(listing, history)
         e.target.reset();
     }
 
     useEffect(() => {
-        setListing({...props.listings.find((listing) => listing.id === id*1)}   )
+        setListing({...props.listings.find((listing) => listing.id === id)}   )
     }, [props.listings])
     
     return(
