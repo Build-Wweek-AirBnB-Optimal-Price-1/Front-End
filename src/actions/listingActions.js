@@ -117,12 +117,14 @@ export const editListing = (editedListing, history) => dispatch => {
 
 export const deleteListing = (id) => dispatch => {
     dispatch({ type: DELETE_LISTING })
-    axiosWithAuth()
-        .delete(`/listing/${id}`)
-        .then(res => {
             dispatch({ type: DELETE_LISTING_SUCCESS, payload: id })
-        })
-        .catch(err => {
-            dispatch({ type: DELETE_LISTING_ERROR, payload: err })
-        })
+
+    // axiosWithAuth()
+    //     .delete(`/listing/${id}`)
+    //     .then(res => {
+    //         dispatch({ type: DELETE_LISTING_SUCCESS, payload: id })
+    //     })
+    //     .catch(err => {
+    //         dispatch({ type: DELETE_LISTING_ERROR, payload: err })
+    //     })
 }

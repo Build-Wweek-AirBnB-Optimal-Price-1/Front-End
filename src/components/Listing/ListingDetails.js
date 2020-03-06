@@ -55,7 +55,7 @@ function ListingDetails(props){
     }
 
     function handleDelete(){
-        deleteListing(id);
+        props.deleteListing(id);
         history.push('/listings');
     }
 
@@ -85,7 +85,7 @@ function ListingDetails(props){
                 {confirmDelete && 
                 <ConfirmDelete>
                     <Text>Are you sure you want to delete this listing?</Text>
-                    <ConfirmButton onClick={handleDelete}>Confirm</ConfirmButton>
+                    <ConfirmButton onClick={ () => handleDelete()}>Confirm</ConfirmButton>
                     <ConfirmButton onClick={handleCancel}>Cancel</ConfirmButton>
                 </ConfirmDelete>}
             </ResponsiveContainer>
@@ -99,4 +99,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(ListingDetails);
+export default connect(mapStateToProps, {deleteListing} )(ListingDetails);
