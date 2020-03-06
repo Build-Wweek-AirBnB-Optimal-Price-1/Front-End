@@ -55,19 +55,21 @@ export const addListing = (newListing, history) => dispatch => {
                 price: dataRes.data[0].toFixed(2)
             }
             console.log(newListingWithPrice)
-            axiosWithAuth()
-                .post('/listing', newListingWithPrice)
-                .then(backendRes => {
-                        console.log(backendRes)
-                    // dispatch({ type: ADD_LISTING_SUCCESS, payload: backendRes.data })
-                        // Make sure history pushes to id of new listing
-                        // history.push(`/listings/details/${backendRes.data.id}`)
-                })
-                .catch(err => {
-                    console.log(err);
+            dispatch({ type: ADD_LISTING_SUCCESS, payload: newListingWithPrice})
 
-                    // dispatch({ type: ADD_LISTING_ERROR, payload: err.data.message })
-                })
+        //     axiosWithAuth()
+        //         .post('/listing', newListingWithPrice)
+        //         .then(backendRes => {
+        //                 console.log(backendRes)
+        //             // dispatch({ type: ADD_LISTING_SUCCESS, payload: backendRes.data })
+        //                 // Make sure history pushes to id of new listing
+        //                 // history.push(`/listings/details/${backendRes.data.id}`)
+        //         })
+        //         .catch(err => {
+        //             console.log(err);
+
+        //             // dispatch({ type: ADD_LISTING_ERROR, payload: err.data.message })
+        //         })
         })
         .catch(err => {
             dispatch({ type: ADD_LISTING_ERROR, payload: err.data.message })
@@ -86,19 +88,21 @@ export const editListing = (editedListing, history) => dispatch => {
         .then((dataRes) => {
                     const editedListingWithPrice = {
                         ...editedListing,
-                        price: dataRes.data[0].toFixed(2)
+                        price: dataRes.data[0].toFixed(2),
                     }
-             axiosWithAuth()
-                .put(`/listing/${editedListing.id}`, editedListingWithPrice)
-                .then(backendRes => {
-                    // dispatch({ type: EDIT_LISTING_SUCCESS, payload: backendRes.data })
+                    dispatch({ type: EDIT_LISTING_SUCCESS, payload: editedListingWithPrice})
 
-                        // Make sure history pushes to id of Edited listing
-                        // history.push(`/listings/details/${backendRes.data.id}`)
-                })
-                .catch(err => {
-                    // dispatch({ type: EDIT_LISTING_ERROR, payload: err })
-                })
+            //  axiosWithAuth()
+            //     .put(`/listing/${editedListing.id}`, editedListingWithPrice)
+            //     .then(backendRes => {
+            //         // dispatch({ type: EDIT_LISTING_SUCCESS, payload: backendRes.data })
+
+            //             // Make sure history pushes to id of Edited listing
+            //             // history.push(`/listings/details/${backendRes.data.id}`)
+            //     })
+            //     .catch(err => {
+            //         // dispatch({ type: EDIT_LISTING_ERROR, payload: err })
+            //     })
         })
         .catch(err => {
             dispatch({ type: EDIT_LISTING_ERROR, payload: err.data.message })
