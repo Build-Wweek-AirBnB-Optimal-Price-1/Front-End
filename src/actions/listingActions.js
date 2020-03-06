@@ -50,7 +50,6 @@ export const addListing = (newListing, history) => dispatch => {
         .get(formatQuery(newListing))
         .then((dataRes) => {
             console.log(dataRes)
-<<<<<<< HEAD
             const newListingWithPrice = {
                 ...newListing,
                 price: dataRes.data[0].toFixed(2)
@@ -69,24 +68,6 @@ export const addListing = (newListing, history) => dispatch => {
 
                     // dispatch({ type: ADD_LISTING_ERROR, payload: err.data.message })
                 })
-=======
-            dispatch({ type: ADD_LISTING_SUCCESS, payload: {...newListing, price: dataRes.data[0].toFixed(2)} })
-            history.push(`/listings`)
-            // axiosWithAuth()
-            //     .post('/listings', {
-            //         ...newListing,
-            //         // price: dataRes
-            //     })
-            //     .then(backendRes => {
-            //         dispatch({ type: ADD_LISTING_SUCCESS, payload: backendRes.data })
-                        //Make sure history pushes to id of new listing
-                        //history.push(`/listings/details/${backendRes.data.id}`)
-            //     })
-            //     .catch(err => {
-            //         dispatch({ type: ADD_LISTING_ERROR, payload: err.data.message })
-            //         console.log('here');
-            //     })
->>>>>>> master
         })
         .catch(err => {
             dispatch({ type: ADD_LISTING_ERROR, payload: err.data.message })
