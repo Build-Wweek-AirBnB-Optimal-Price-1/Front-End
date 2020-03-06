@@ -3,6 +3,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { logoutAction } from '../actions/authActions';
 import Logo from '../assets/logo.png';
 import {HeaderStruct, HeaderLogo, Navigation, LinkContainer} from './PresentationalComponents';
+import '../App.css';
 
 // Displays public header to un-registered/un-authenticated users
 function Header(){
@@ -11,7 +12,9 @@ function Header(){
     if(token){
         return(
             <HeaderStruct>
-                <HeaderLogo src={Logo} alt='Optimal BNB' />
+                <a href='https://build-wweek-airbnb-optimal-price-1.github.io/Marketing-Page/index.html'>
+                    <HeaderLogo src={Logo} alt='Optimal BNB' />
+                </a>
                 <Navigation>
                     <Link to='/listings'>Listings</Link>
                     <Link onClick={() => logoutAction(history)}><LinkContainer>Log Out</LinkContainer></Link>
@@ -24,10 +27,7 @@ function Header(){
                 <a href='https://build-wweek-airbnb-optimal-price-1.github.io/Marketing-Page/index.html'>
                     <HeaderLogo src={Logo} alt='Optimal BNB' />
                 </a>
-                <Navigation>
-                    {/* Temporary link for development */}
-                    <Link to='/listings'>Listings</Link>
-                    
+                <Navigation>                    
                     <a href={'https://build-wweek-airbnb-optimal-price-1.github.io/Marketing-Page/about-us.html'}>
                         About
                     </a>

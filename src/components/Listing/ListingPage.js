@@ -4,8 +4,10 @@ import {getListings} from '../../actions/listingActions';
 import {useHistory} from 'react-router-dom'
 import { ResponsiveContainer, Title, CardContainer, 
         ControlBar, ControlBarText, ControlBarItem, 
-        PlusButton, Input } from '../PresentationalComponents';
+        PlusButton, Input, LoadingContainer, Circular } from '../PresentationalComponents';
+import { CircularProgress } from '@material-ui/core';
 import ListingCard from './ListingCard';
+import { Motion, Spring, spring } from 'react-motion';
 
 /*
     ListingPage
@@ -37,40 +39,48 @@ function ListingPage(props){
         Renders when component mounts
         Re-renders whenever there is a change to isFetching from props
     */
-
     useEffect(() => {
         props.getListings()
     }, [])
 
-    if(props.isFetching){
-        return(
-            <p>Grabbing Data</p>
-        );
-    }else{
-        return (
-                <ResponsiveContainer>
-                    <Title>My Listings</Title>
-                    <ControlBar>
-                        <ControlBarItem onClick={() => history.push('/listings/add')}>
-                            <PlusButton />
-                            <ControlBarText margin>Add New Listing</ControlBarText>
-                        </ControlBarItem>
-                        <ControlBarItem>
-                            <ControlBarText>Search</ControlBarText>
-                            <form>
-                                <Input search onChange={handleChange}></Input>
-                            </form>
-                        </ControlBarItem>
-                    </ControlBar>
-                    <CardContainer>
-                    {search.map((listing, index) => {
-                        return <ListingCard preview={false} listing={listing} key={index}/>
-                    })}
-                    </CardContainer>
-                </ResponsiveContainer>
-
-        );
-    }
+    return (
+        <ResponsiveContainer>
+            <Title>My Listings</Title>
+            <ControlBar>
+                <ControlBarItem onClick={() => history.push('/listings/add')}>
+                    <PlusButton />
+                    <ControlBarText margin>Add New Listing</ControlBarText>
+                </ControlBarItem>
+                <ControlBarItem>
+                    <ControlBarText>Search</ControlBarText>
+                    <form>
+                        <Input search onChange={handleChange}></Input>
+                    </form>
+                </ControlBarItem>
+            </ControlBar>
+            {props.isFetching ? 
+                <LoadingContainer>
+                    <Title>Loading Listings</Title>
+                    <Circular>
+                        <CircularProgress color={'inherit'}/>
+                    </Circular>
+                </LoadingContainer> 
+                :
+                <Motion
+                    defaultStyle={{opacity: 0}}
+                    style={{opacity: spring(1, {stiffness: 10, damping: 10})}}
+                >
+                    {style => (
+                        <CardContainer style={{opacity: style.opacity}}>
+                        {search.map(listing => {
+                            return <ListingCard preview={false} listing={listing} key={listing.id}/>
+                        })}
+                        </CardContainer>
+                    )}
+                </Motion>
+            }
+        </ResponsiveContainer>
+    );
 }
 
 const mapStateToProps = (state) => {
