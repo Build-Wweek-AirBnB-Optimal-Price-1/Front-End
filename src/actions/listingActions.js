@@ -52,7 +52,9 @@ export const addListing = (newListing, history) => dispatch => {
             console.log(dataRes)
             const newListingWithPrice = {
                 ...newListing,
-                price: dataRes.data[0].toFixed(2)
+                price: dataRes.data[0].toFixed(2),
+                id: Math.random().toString(36).substring(2, 4) + Math.random().toString(36).substring(2, 4) + Math.random().toString(36).substring(2, 4)
+
             }
             console.log(newListingWithPrice)
             dispatch({ type: ADD_LISTING_SUCCESS, payload: newListingWithPrice})
@@ -88,7 +90,7 @@ export const editListing = (editedListing, history) => dispatch => {
         .then((dataRes) => {
                     const editedListingWithPrice = {
                         ...editedListing,
-                        price: dataRes.data[0].toFixed(2),
+                        price: dataRes.data[0].toFixed(2)
                     }
                     dispatch({ type: EDIT_LISTING_SUCCESS, payload: editedListingWithPrice})
 
