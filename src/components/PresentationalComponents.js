@@ -342,3 +342,17 @@ export const Text = styled.p`
     font-size: 1.3rem;
     color: white;
 `;
+
+// ---------- Loading Components ---------- //
+export const LoadingContainer = styled.div`
+    width: 100%;
+    margin-top: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+`
+
+export const Circular = styled.div`
+    margin-top: 20px;
+`;
