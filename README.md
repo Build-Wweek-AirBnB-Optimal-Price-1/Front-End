@@ -12,6 +12,7 @@ React 2 Developer - In charge of state management and connecting with backend
 * Axios
 * React-DOM
 * React-Hook-Form
+* React-Motion
 * React-Redux
 * React-Router-DOM
 * Redux
