@@ -54,10 +54,10 @@ export const addListing = (newListing, history) => dispatch => {
                 ...newListing,
                 price: dataRes.data[0].toFixed(2),
                 id: Math.random().toString(36).substring(2, 4) + Math.random().toString(36).substring(2, 4) + Math.random().toString(36).substring(2, 4)
-
             }
             console.log(newListingWithPrice)
             dispatch({ type: ADD_LISTING_SUCCESS, payload: newListingWithPrice})
+            history.push('/listings')
 
         //     axiosWithAuth()
         //         .post('/listing', newListingWithPrice)
@@ -93,6 +93,8 @@ export const editListing = (editedListing, history) => dispatch => {
                         price: dataRes.data[0].toFixed(2)
                     }
                     dispatch({ type: EDIT_LISTING_SUCCESS, payload: editedListingWithPrice})
+                    history.push('/listings')
+                    
 
             //  axiosWithAuth()
             //     .put(`/listing/${editedListing.id}`, editedListingWithPrice)
