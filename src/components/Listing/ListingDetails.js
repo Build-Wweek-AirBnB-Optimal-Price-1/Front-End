@@ -22,7 +22,7 @@ function ListingDetails(props){
     
     useEffect(() => {
         setListing({
-            ...props.listings.find(listing => listing.id === id*1)
+            ...props.listings.find(listing => listing.id === id)
         })
     }, [props.listings]) 
 

@@ -39,9 +39,9 @@ function ListingPage(props){
         Renders when component mounts
         Re-renders whenever there is a change to isFetching from props
     */
-    useEffect(() => {
-        props.getListings()
-    }, [])
+    // useEffect(() => {
+    //     props.getListings()
+    // }, [])
 
     return (
         <ResponsiveContainer>
