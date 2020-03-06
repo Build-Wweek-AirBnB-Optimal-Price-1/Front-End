@@ -7,6 +7,7 @@ import { ResponsiveContainer, Title, CardContainer,
         PlusButton, Input, LoadingContainer, Circular } from '../PresentationalComponents';
 import { CircularProgress } from '@material-ui/core';
 import ListingCard from './ListingCard';
+import { Motion, Spring, spring } from 'react-motion';
 
 /*
     ListingPage
@@ -65,11 +66,18 @@ function ListingPage(props){
                     </Circular>
                 </LoadingContainer> 
                 :
-                <CardContainer>
-                {search.map((listing, index) => {
-                    return <ListingCard preview={false} listing={listing} key={index}/>
-                })}
-                </CardContainer>
+                <Motion
+                    defaultStyle={{opacity: 0}}
+                    style={{opacity: spring(1, {stiffness: 10, damping: 10})}}
+                >
+                    {style => (
+                        <CardContainer style={{opacity: style.opacity}}>
+                        {search.map(listing => {
+                            return <ListingCard preview={false} listing={listing} key={listing.id}/>
+                        })}
+                        </CardContainer>
+                    )}
+                </Motion>
             }
         </ResponsiveContainer>
     );

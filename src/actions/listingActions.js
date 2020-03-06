@@ -50,7 +50,7 @@ export const addListing = (newListing, history) => dispatch => {
         .then((dataRes) => {
             console.log(dataRes)
             dispatch({ type: ADD_LISTING_SUCCESS, payload: {...newListing, price: dataRes.data[0].toFixed(2)} })
-            history.push(`/listing`)
+            history.push(`/listings`)
             // axiosWithAuth()
             //     .post('/listings', {
             //         ...newListing,

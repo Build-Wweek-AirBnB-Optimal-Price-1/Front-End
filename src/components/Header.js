@@ -12,7 +12,9 @@ function Header(){
     if(token){
         return(
             <HeaderStruct>
-                <HeaderLogo src={Logo} alt='Optimal BNB' />
+                <a href='https://build-wweek-airbnb-optimal-price-1.github.io/Marketing-Page/index.html'>
+                    <HeaderLogo src={Logo} alt='Optimal BNB' />
+                </a>
                 <Navigation>
                     <Link to='/listings'>Listings</Link>
                     <Link onClick={() => logoutAction(history)}><LinkContainer>Log Out</LinkContainer></Link>
