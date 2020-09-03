@@ -46,7 +46,7 @@ React 2 Developer - In charge of state management and connecting with backend
  * Tablet -> 769px
  * Desktop -> 1024px
  
-# Installation Instructions
+## Installation Instructions
 - Clone this repo
 - **yarn** to install all required dependencies
 - **yarn start** to start the local app deployment
